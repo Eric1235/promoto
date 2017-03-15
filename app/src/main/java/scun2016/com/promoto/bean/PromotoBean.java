@@ -1,5 +1,7 @@
 package scun2016.com.promoto.bean;
 
+import android.support.annotation.Keep;
+
 import org.litepal.crud.DataSupport;
 
 /**
@@ -11,6 +13,7 @@ import org.litepal.crud.DataSupport;
 /**
  * 数据库操作的bean
  */
+@Keep
 public class PromotoBean extends DataSupport{
-
+    private String tagName;
 }
