@@ -21,5 +21,6 @@ public class TestActivity extends Activity {
         setContentView(R.layout.activity_test);
         mCenterIndicator = (CenterIndicator) findViewById(R.id.view);
         mCenterIndicator.setProgress(50);
+        mCenterIndicator.setStatus(3);
     }
 }

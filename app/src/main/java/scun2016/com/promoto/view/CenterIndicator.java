@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -18,9 +19,9 @@ import android.view.View;
 
 public class CenterIndicator extends View {
 
-    private static final int STATUS_NONE = 1;
-    private static final int STATUS_WORKING = 2;
-    private static final int STATUS_FINISHED = 3;
+    private static final int STATUS_NONE = 1;//未开始状态
+    private static final int STATUS_WORKING = 2;//倒计时状态
+    private static final int STATUS_FINISHED = 3;//完成状态
 
     private int mProgress;//进度是0到100
     private int mRadius;
@@ -37,6 +38,8 @@ public class CenterIndicator extends View {
     private Paint mTrianglePaint;
     private Path mTickPath;//钩钩的路径
     private Path mTrianglePath;//三角形的路径
+
+    private OnCenterClickListener mOnCenterClickListener;//点击事件回调
 
 
     public CenterIndicator(Context context) {
@@ -84,8 +87,15 @@ public class CenterIndicator extends View {
 
     }
 
+    //不断更新进度
     public void setProgress(int progress) {
         mProgress = progress;
+        invalidate();
+    }
+
+    //设置按钮状态
+    public void setStatus(int status){
+        mStatus = status;
         invalidate();
     }
 
@@ -133,13 +143,31 @@ public class CenterIndicator extends View {
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mOnCenterClickListener != null){
+            mOnCenterClickListener.onCenterClick(mStatus);
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawBackground(canvas);
+        switch (mStatus){
+            case STATUS_NONE:
+                drawTriangle(canvas);
+                break;
+            case STATUS_WORKING:
+                drawTiming(canvas);
+                break;
+            case STATUS_FINISHED:
+                drawTick(canvas);
+                break;
+        }
+
 //        drawTiming(canvas);
 //        drawTriangle(canvas);
-        drawTiming(canvas);
-
     }
 
     //绘制圆角背景
@@ -174,6 +202,23 @@ public class CenterIndicator extends View {
 
     //绘制完成的沟沟
     private void drawTick(Canvas canvas){
+        int centerX = mWidth / 2;
+        int centerY = mHeight / 2;
+        Path path = new Path();
+        path.moveTo(centerX - (centerX / 3), centerY - (centerY / 6));
+        path.lineTo(centerX - (centerX / 6), centerY + (centerY / 3));
+        path.lineTo(centerX + centerX / 3, centerY - (centerY / 3));
+        canvas.drawPath(path, mCirclePaint);
+    }
 
+    //设置点击事件
+    public void setOnCenterClickListener(
+            OnCenterClickListener onCenterClickListener) {
+        mOnCenterClickListener = onCenterClickListener;
+    }
+
+    //点击回调
+    public interface OnCenterClickListener{
+        void onCenterClick(int status);
     }
 }

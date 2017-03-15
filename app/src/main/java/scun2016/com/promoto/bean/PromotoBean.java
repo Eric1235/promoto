@@ -16,4 +16,5 @@ import org.litepal.crud.DataSupport;
 @Keep
 public class PromotoBean extends DataSupport{
     private String tagName;
+    private boolean urgent;
 }
