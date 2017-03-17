@@ -6,8 +6,10 @@ package scun2016.com.promoto.home;
  * Email: EricLi1235@gmial.com
  */
 
+import scun2016.com.promoto.base.BaseFragment;
+
 /**
  * 主页
  */
-public class HomeFragment {
+public class HomeFragment extends BaseFragment{
 }

@@ -6,8 +6,10 @@ package scun2016.com.promoto.daily;
  * Email: EricLi1235@gmial.com
  */
 
+import scun2016.com.promoto.base.BaseFragment;
+
 /**
  * 日常使用情况记录
  */
-public class DailyFragment {
+public class DailyFragment extends BaseFragment {
 }

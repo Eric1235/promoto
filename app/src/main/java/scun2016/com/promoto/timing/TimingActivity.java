@@ -6,11 +6,11 @@ package scun2016.com.promoto.timing;
  * Email: EricLi1235@gmial.com
  */
 
-import android.app.Activity;
+import scun2016.com.promoto.base.BaseActivity;
 
 /**
  * 倒计时activity
  */
-public class TimingActivity extends Activity{
+public class TimingActivity extends BaseActivity{
 
 }

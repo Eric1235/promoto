@@ -6,8 +6,10 @@ package scun2016.com.promoto.diagram;
  * Email: EricLi1235@gmial.com
  */
 
+import scun2016.com.promoto.base.BaseFragment;
+
 /**
  * 图表文件
  */
-public class DiagramFragment {
+public class DiagramFragment extends BaseFragment{
 }
