@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,16 +31,28 @@ public class MainActivity extends BaseActivity {
 
     private List<BaseFragment> mFragments;
 
+    private android.support.v7.widget.Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mViewIndicator = (ViewIndicator) findViewById(R.id.view_indicator);
+
+        initToolBar();
+
         initViewIndicator();
         initFragments();
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mViewPager.setAdapter(new MainFragmentAdapter(getSupportFragmentManager()));
         initListener();
+    }
+
+    private void initToolBar(){
+        mToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        mToolbar.setTitle("Main");
+        mToolbar.setLogo(R.mipmap.ic_launcher_round);
+        setSupportActionBar(mToolbar);
     }
 
     private void initFragments(){
@@ -49,6 +62,8 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new DiagramFragment());
         mFragments.add(new SettingFragment());
     }
+
+
 
     private void initViewIndicator(){
         List<ViewIndicator.ViewIndicatorParam> params = new ArrayList<>();
