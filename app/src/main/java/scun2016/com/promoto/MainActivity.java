@@ -55,26 +55,7 @@ public class MainActivity extends BaseActivity {
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
 
         mToolbar.setTitle("Main");
-
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_give_up_promoto:
-                        Toast.makeText(MainActivity.this, "Give up", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.action_history:
-                        Toast.makeText(MainActivity.this, "History", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                return true;
-            }
-        });
         setSupportActionBar(mToolbar);
-
-//        mToolbar.inflateMenu(R.menu.menu_main);
-
-
     }
 
     private void initFragments(){
