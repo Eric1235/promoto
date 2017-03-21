@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private ViewIndicator mViewIndicator;
     private CenterIndicator mCenterIndicator;
     private ViewPager mViewPager;
+    private TextView mTimeTextView;
 
     private List<BaseFragment> mFragments;
 
@@ -50,8 +52,7 @@ public class MainActivity extends BaseActivity {
 
     private void initToolBar(){
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
-
-        mToolbar.setTitle("Main");
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
 
