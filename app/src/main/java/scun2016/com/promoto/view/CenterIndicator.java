@@ -99,6 +99,12 @@ public class CenterIndicator extends View {
         invalidate();
     }
 
+    //当activity退出，或者当前View被remove的时候，会调用这个方法。如果View有线程或者动画，应该在此方法里面清空
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int wMode = MeasureSpec.getMode(widthMeasureSpec);
@@ -109,9 +115,10 @@ public class CenterIndicator extends View {
             case MeasureSpec.AT_MOST:
                 wSize = 100;
                 break;
-            case MeasureSpec.UNSPECIFIED:
-                wSize = 100;
-                break;
+            //这种情况，一般是用于系统内部。普通的view测量，没有这种模式
+//            case MeasureSpec.UNSPECIFIED:
+//                wSize = 100;
+//                break;
             case MeasureSpec.EXACTLY:
                 wSize = wSize - getPaddingLeft() - getPaddingRight();
                 break;
@@ -120,9 +127,9 @@ public class CenterIndicator extends View {
             case MeasureSpec.AT_MOST:
                 hSize = 50;
                 break;
-            case MeasureSpec.UNSPECIFIED:
-                hSize = 50;
-                break;
+//            case MeasureSpec.UNSPECIFIED:
+//                hSize = 50;
+//                break;
             case MeasureSpec.EXACTLY:
                 hSize = hSize - getPaddingTop() - getPaddingBottom();
                 break;
