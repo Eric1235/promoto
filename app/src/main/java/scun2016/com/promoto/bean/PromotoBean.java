@@ -15,6 +15,25 @@ import org.litepal.crud.DataSupport;
  */
 @Keep
 public class PromotoBean extends DataSupport{
+    //标签名
     private String tagName;
+    //土豆内容
+    private String content;
     private boolean urgent;
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public boolean isUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(boolean urgent) {
+        this.urgent = urgent;
+    }
 }

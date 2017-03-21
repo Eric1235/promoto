@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -135,30 +132,30 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_give_up_promoto:
-                Toast.makeText(MainActivity.this, "Give up", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.action_history:
-                Toast.makeText(MainActivity.this, "History", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.menu_home, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        return super.onPrepareOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.action_give_up_promoto:
+//                Toast.makeText(MainActivity.this, "Give up", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.action_history:
+//                Toast.makeText(MainActivity.this, "History", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     class MainFragmentAdapter extends FragmentPagerAdapter{
 

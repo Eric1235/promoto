@@ -24,7 +24,7 @@ public class BaseFragment extends Fragment{
         context = getBaseActivity();
     }
 
-    private BaseActivity getBaseActivity(){
+    public BaseActivity getBaseActivity(){
         return (BaseActivity) getActivity();
     }
 
