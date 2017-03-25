@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Promoto</string>
+    <string name="input_new_task">添加新任务</string>
 </resources>

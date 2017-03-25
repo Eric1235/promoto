@@ -69,23 +69,23 @@ public class MainActivity extends BaseActivity {
     private void initViewIndicator(){
         List<ViewIndicator.ViewIndicatorParam> params = new ArrayList<>();
         ViewIndicator.ViewIndicatorParam param1 = new ViewIndicator.ViewIndicatorParam();
-        param1.setIcPressedId(R.mipmap.ic_launcher);
-        param1.setIcUnPressedId(R.mipmap.ic_launcher_round);
+        param1.setIcPressedId(R.drawable.home_checked);
+        param1.setIcUnPressedId(R.drawable.home_unchecked);
         params.add(param1);
 
         ViewIndicator.ViewIndicatorParam param2 = new ViewIndicator.ViewIndicatorParam();
-        param2.setIcPressedId(R.mipmap.ic_launcher);
-        param2.setIcUnPressedId(R.mipmap.ic_launcher_round);
+        param2.setIcPressedId(R.drawable.daily_checked);
+        param2.setIcUnPressedId(R.drawable.daily_unchecked);
         params.add(param2);
 
         ViewIndicator.ViewIndicatorParam param3 = new ViewIndicator.ViewIndicatorParam();
-        param3.setIcPressedId(R.mipmap.ic_launcher);
-        param3.setIcUnPressedId(R.mipmap.ic_launcher_round);
+        param3.setIcPressedId(R.drawable.diagram_checked);
+        param3.setIcUnPressedId(R.drawable.diagram_uncheckeed);
         params.add(param3);
 
         ViewIndicator.ViewIndicatorParam param4 = new ViewIndicator.ViewIndicatorParam();
-        param4.setIcPressedId(R.mipmap.ic_launcher);
-        param4.setIcUnPressedId(R.mipmap.ic_launcher_round);
+        param4.setIcPressedId(R.drawable.setting_checked);
+        param4.setIcUnPressedId(R.drawable.setting_unchecked);
         params.add(param4);
 
         mViewIndicator.init(params);

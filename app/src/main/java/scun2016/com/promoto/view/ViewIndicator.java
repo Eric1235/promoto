@@ -51,7 +51,7 @@ public class ViewIndicator extends LinearLayout implements View.OnClickListener 
     private View createIndicator(ViewIndicatorParam param){
         View view = LayoutInflater.from(getContext()).inflate(R.layout.view_indicator, null);
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+                ViewGroup.LayoutParams.MATCH_PARENT, 1);
         view.setLayoutParams(params);
         setNormal(view, param);
         return view;
