@@ -19,7 +19,46 @@ public class PromotoBean extends DataSupport{
     private String tagName;
     //土豆内容
     private String content;
+    //是否是紧急任务
     private boolean urgent;
+    //当前是否被选中
+    private boolean selected;
+    //土豆完成的时间
+    private long finishedTime;
+
+    private int state;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public long getFinishedTime() {
+        return finishedTime;
+    }
+
+    public void setFinishedTime(long finishedTime) {
+        this.finishedTime = finishedTime;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getTagName() {
         return tagName;
