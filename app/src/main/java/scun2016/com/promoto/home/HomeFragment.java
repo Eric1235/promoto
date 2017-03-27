@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,6 +53,8 @@ public class HomeFragment extends BaseFragment{
         View view = inflater.inflate(R.layout.fragment_home, null);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_promoto);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
+        //解决屏闪问题
+        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         mAdapter = new PromotoAdapter(getBaseActivity(), mBeanList);
         mCallback  = new ItemTouch(mAdapter);
         mItemTouchHelper = new ItemTouchHelperExtension(mCallback);

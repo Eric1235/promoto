@@ -136,6 +136,16 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position,
+            List<Object> payloads) {
+        if (payloads == null || payloads.isEmpty()){
+            onBindViewHolder(holder, position);
+        } else {
+            notifyItemChanged(position, payloads.get(position));
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return mBeanList.size();
     }
