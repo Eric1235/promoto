@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,7 +100,7 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ItemBaseViewHolder baseViewHolder = (ItemBaseViewHolder) holder;
         PromotoBean bean = mBeanList.get(position);
-        ((ItemBaseViewHolder) holder).bind(bean);
+        ((ItemBaseViewHolder) holder).bind(bean, position);
         baseViewHolder.mViewContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,8 +143,8 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class ItemBaseViewHolder extends RecyclerView.ViewHolder{
         TextView tvContent;
-        RadioButton mCheckBox;
-        ImageButton mImageButton;
+        ImageButton mBeanSelect;
+        ImageButton mBeanUrgent;
         View mViewContent;
         View mActionContainer;
 
@@ -153,17 +152,32 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             super(itemView);
             tvContent = (TextView)itemView.findViewById(R.id.tv_content);
-            mCheckBox = (RadioButton) itemView.findViewById(R.id.btn_check);
-            mImageButton = (ImageButton)itemView.findViewById(R.id.btn_emerge);
+            mBeanSelect = (ImageButton) itemView.findViewById(R.id.btn_check);
+            mBeanUrgent = (ImageButton)itemView.findViewById(R.id.btn_emerge);
             mViewContent = itemView.findViewById(R.id.view_list_main_content);
             mActionContainer = itemView.findViewById(R.id.view_list_repo_action_container);
         }
 
         //在这里进行内容绑定
-        public void bind(PromotoBean bean){
+        public void bind(final PromotoBean bean,final int position){
             tvContent.setText(bean.getContent());
-            mCheckBox.setChecked(bean.isSelected());
-            mImageButton.setImageResource(R.drawable.checked);
+            mBeanSelect.setSelected(bean.isSelected());
+            mBeanUrgent.setSelected(bean.isUrgent());
+            mBeanSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bean.setSelected(!bean.isSelected());
+                    notifyItemChanged(position);
+                }
+            });
+
+            mBeanUrgent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bean.setUrgent(!bean.isUrgent());
+                    notifyItemChanged(position);
+                }
+            });
             itemView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

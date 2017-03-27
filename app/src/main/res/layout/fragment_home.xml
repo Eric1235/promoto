@@ -4,13 +4,24 @@
               android:focusable="true"
               android:focusableInTouchMode="true"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/white">
+    <include layout="@layout/view_line_big"/>
+    <include
+        layout="@layout/view_line"/>
     <EditText
         android:id="@+id/et_new_task"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingLeft="4dp"
+        android:paddingLeft="10dp"
+        android:background="@null"
         android:hint="@string/input_new_task"/>
+
+    <include
+        layout="@layout/view_line"/>
+    <include layout="@layout/view_line_big"/>
+    <include
+        layout="@layout/view_line"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_promoto"

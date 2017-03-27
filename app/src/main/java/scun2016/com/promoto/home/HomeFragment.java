@@ -67,6 +67,7 @@ public class HomeFragment extends BaseFragment{
         PromotoBean bean = new PromotoBean();
         bean.setContent("吃饭");
         bean.setSelected(true);
+        bean.setUrgent(true);
         bean.setPosition(1);
         mBeanList.add(bean);
 
@@ -74,12 +75,21 @@ public class HomeFragment extends BaseFragment{
         bean.setContent("学习");
         bean.setSelected(true);
         bean.setPosition(2);
+        bean.setUrgent(false);
         mBeanList.add(bean);
 
         bean = new PromotoBean();
         bean.setContent("睡觉");
         bean.setSelected(false);
         bean.setPosition(1);
+        bean.setUrgent(true);
+        mBeanList.add(bean);
+
+        bean = new PromotoBean();
+        bean.setContent("#编程");
+        bean.setSelected(true);
+        bean.setPosition(2);
+        bean.setUrgent(false);
         mBeanList.add(bean);
 
     }
