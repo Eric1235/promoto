@@ -6,8 +6,8 @@
         android:id="@+id/view_list_repo_action_container"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_gravity="right"
-        android:background=""
+        android:layout_gravity="left"
+        android:background="@color/list_background"
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/list_action_delete"
@@ -29,6 +29,8 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <include layout="@layout/item_task"/>
+    <include
+        android:id="@+id/view_list_main_content"
+        layout="@layout/item_task"/>
 
 </FrameLayout>

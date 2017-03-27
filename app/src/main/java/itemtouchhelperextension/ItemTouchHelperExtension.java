@@ -34,6 +34,8 @@ import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.List;
 
+import scun2016.com.promoto.R;
+
 public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
         implements RecyclerView.OnChildAttachStateChangeListener {
 

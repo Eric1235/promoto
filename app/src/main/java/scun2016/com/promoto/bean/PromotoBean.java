@@ -28,6 +28,16 @@ public class PromotoBean extends DataSupport{
 
     private int state;
 
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public String getContent() {
         return content;
     }

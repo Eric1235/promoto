@@ -1,17 +1,22 @@
 package scun2016.com.promoto.home;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
 
+import itemtouchhelperextension.Extension;
+import itemtouchhelperextension.ItemTouchHelperExtension;
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.bean.PromotoBean;
 
@@ -21,7 +26,12 @@ import scun2016.com.promoto.bean.PromotoBean;
  * Email: EricLi1235@gmial.com
  */
 
-public class PromotoAdapter extends RecyclerView.Adapter<PromotoAdapter.ItemViewHolder> implements ItemTouchHelperAdapter{
+public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter{
+
+    public static final int ITEM_TYPE_RECYCLER_WIDTH = 1000;
+    public static final int ITEM_TYPE_ACTION_WIDTH = 1001;
+    public static final int ITEM_TYPE_ACTION_WIDTH_NO_SPRING = 1002;
+    private ItemTouchHelperExtension mItemTouchHelperExtension;
 
     private Context mContext;
 
@@ -33,31 +43,97 @@ public class PromotoAdapter extends RecyclerView.Adapter<PromotoAdapter.ItemView
         mBeanList = beanList;
     }
 
-    @Override
-    public void onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(mBeanList, fromPosition, toPosition);
-        notifyItemMoved(fromPosition, toPosition);
+    public void updateData(List<PromotoBean> list){
+        this.mBeanList = list;
+        notifyDataSetChanged();
     }
 
-    @Override
-    public void onItemDismiss(int position) {
+    public void setItemTouchHelperExtension(ItemTouchHelperExtension itemTouchHelperExtension){
+        mItemTouchHelperExtension = itemTouchHelperExtension;
+    }
+
+    private void doDelete(int position){
         mBeanList.remove(position);
         notifyItemRemoved(position);
     }
 
-    @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemViewHolder viewHolder = new ItemViewHolder(LayoutInflater.from(mContext).inflate(
-                R.layout.item_task, parent, false));
-        return viewHolder;
+    public void move(int from, int to){
+        Collections.swap(mBeanList, from, to);
+        notifyItemMoved(from, to);
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position) {
+    public void onItemMove(int fromPosition, int toPosition) {
+        move(fromPosition, toPosition );
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        doDelete(position);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
         PromotoBean bean = mBeanList.get(position);
-        holder.tvContent.setText(bean.getContent());
-        holder.mCheckBox.setChecked(bean.isSelected());
-        holder.mImageButton.setImageResource(R.drawable.checked);
+        if (bean.getPosition() == 1){
+            return ITEM_TYPE_ACTION_WIDTH_NO_SPRING;
+        }
+        if (bean.getPosition() == 2){
+            return ITEM_TYPE_RECYCLER_WIDTH;
+        }
+        return ITEM_TYPE_ACTION_WIDTH;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_main, parent, false);
+        if (viewType == ITEM_TYPE_ACTION_WIDTH){
+            return new ItemSwipeWithActionWidthViewHolder(view);
+        }
+        if (viewType == ITEM_TYPE_RECYCLER_WIDTH){
+            view = LayoutInflater.from(mContext).inflate(R.layout.list_item_single_delete, parent, false);
+            return new ItemViewHolderWithRecyclerWidth(view);
+        }
+        return new ItemSwipeWithActionWidthNoSpringViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        ItemBaseViewHolder baseViewHolder = (ItemBaseViewHolder) holder;
+        PromotoBean bean = mBeanList.get(position);
+        ((ItemBaseViewHolder) holder).bind(bean);
+        baseViewHolder.mViewContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Item Content click: #" + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        if (holder instanceof ItemViewHolderWithRecyclerWidth){
+            ItemViewHolderWithRecyclerWidth viewHolder = (ItemViewHolderWithRecyclerWidth)holder;
+            viewHolder.mActionViewDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    doDelete(holder.getAdapterPosition());
+                }
+            });
+        } else if (holder instanceof ItemSwipeWithActionWidthViewHolder){
+            ItemSwipeWithActionWidthViewHolder viewHolder = (ItemSwipeWithActionWidthViewHolder)holder;
+            viewHolder.mActionViewRefresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "Refresh Click" + holder.getAdapterPosition()
+                            , Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            viewHolder.mActionViewDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    doDelete(holder.getAdapterPosition());
+                }
+            });
+        }
     }
 
     @Override
@@ -66,17 +142,74 @@ public class PromotoAdapter extends RecyclerView.Adapter<PromotoAdapter.ItemView
     }
 
 
-    class ItemViewHolder extends RecyclerView.ViewHolder{
+    class ItemBaseViewHolder extends RecyclerView.ViewHolder{
         TextView tvContent;
         RadioButton mCheckBox;
         ImageButton mImageButton;
+        View mViewContent;
+        View mActionContainer;
 
-        public ItemViewHolder(View itemView) {
+        public ItemBaseViewHolder(View itemView) {
 
             super(itemView);
             tvContent = (TextView)itemView.findViewById(R.id.tv_content);
             mCheckBox = (RadioButton) itemView.findViewById(R.id.btn_check);
             mImageButton = (ImageButton)itemView.findViewById(R.id.btn_emerge);
+            mViewContent = itemView.findViewById(R.id.view_list_main_content);
+            mActionContainer = itemView.findViewById(R.id.view_list_repo_action_container);
+        }
+
+        //在这里进行内容绑定
+        public void bind(PromotoBean bean){
+            tvContent.setText(bean.getContent());
+            mCheckBox.setChecked(bean.isSelected());
+            mImageButton.setImageResource(R.drawable.checked);
+            itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN){
+                        mItemTouchHelperExtension.startDrag(ItemBaseViewHolder.this);
+                    }
+                    return true;
+                }
+            });
         }
     }
+
+    class ItemViewHolderWithRecyclerWidth extends ItemBaseViewHolder{
+        View mActionViewDelete;
+        public ItemViewHolderWithRecyclerWidth(View itemView) {
+            super(itemView);
+            mActionViewDelete = itemView.findViewById(R.id.list_action_delete);
+        }
+    }
+
+    class ItemSwipeWithActionWidthViewHolder extends ItemBaseViewHolder implements Extension{
+        View mActionViewDelete;
+        View mActionViewRefresh;
+
+        public ItemSwipeWithActionWidthViewHolder(View itemView) {
+            super(itemView);
+            mActionViewDelete = itemView.findViewById(R.id.view_list_repo_action_delete);
+            mActionViewRefresh = itemView.findViewById(R.id.view_list_repo_action_update);
+        }
+
+        @Override
+        public float getActionWidth() {
+            return mActionContainer.getWidth();
+        }
+    }
+
+    class ItemSwipeWithActionWidthNoSpringViewHolder extends ItemSwipeWithActionWidthViewHolder implements Extension {
+
+        public ItemSwipeWithActionWidthNoSpringViewHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        public float getActionWidth() {
+            return mActionContainer.getWidth();
+        }
+    }
+
 }

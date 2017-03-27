@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +20,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import itemtouchhelperextension.ItemTouchHelperExtension;
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseFragment;
 import scun2016.com.promoto.bean.PromotoBean;
@@ -33,6 +33,9 @@ public class HomeFragment extends BaseFragment{
     private RecyclerView mRecyclerView;
     private List<PromotoBean> mBeanList;
     private PromotoAdapter mAdapter;
+
+    public ItemTouchHelperExtension mItemTouchHelper;
+    public ItemTouchHelperExtension.Callback mCallback;
 
 
     @Override
@@ -50,11 +53,12 @@ public class HomeFragment extends BaseFragment{
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_promoto);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
         mAdapter = new PromotoAdapter(getBaseActivity(), mBeanList);
-        ItemTouchHelper.Callback callback = new ItemTouch(mAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        mCallback  = new ItemTouch(mAdapter);
+        mItemTouchHelper = new ItemTouchHelperExtension(mCallback);
 
         mRecyclerView.setAdapter(mAdapter);
-        touchHelper.attachToRecyclerView(mRecyclerView);
+        mRecyclerView.addItemDecoration(new scun2016.com.promoto.home.DividerItemDecoration(getBaseActivity()));
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
         return view;
     }
 
@@ -63,16 +67,19 @@ public class HomeFragment extends BaseFragment{
         PromotoBean bean = new PromotoBean();
         bean.setContent("吃饭");
         bean.setSelected(true);
+        bean.setPosition(1);
         mBeanList.add(bean);
 
         bean = new PromotoBean();
         bean.setContent("学习");
         bean.setSelected(true);
+        bean.setPosition(2);
         mBeanList.add(bean);
 
         bean = new PromotoBean();
         bean.setContent("睡觉");
         bean.setSelected(false);
+        bean.setPosition(1);
         mBeanList.add(bean);
 
     }
