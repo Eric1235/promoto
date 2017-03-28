@@ -69,6 +69,9 @@ public class HomeFragment extends BaseFragment{
         mBeanList = new ArrayList<>();
         PromotoBean bean = new PromotoBean();
         bean.setContent("吃饭");
+        bean.setTagName("#休息");
+        bean.setTotalPromotoNum(10);
+        bean.setFinishedPromotoNum(1);
         bean.setSelected(true);
         bean.setUrgent(true);
         bean.setPosition(1);
@@ -76,26 +79,38 @@ public class HomeFragment extends BaseFragment{
 
         bean = new PromotoBean();
         bean.setContent("学习");
+        bean.setTotalPromotoNum(10);
+        bean.setFinishedPromotoNum(1);
         bean.setSelected(true);
-        bean.setPosition(2);
+        bean.setPosition(1);
         bean.setUrgent(false);
         mBeanList.add(bean);
 
         bean = new PromotoBean();
-        bean.setContent("睡觉");
+        bean.setTagName("#睡觉");
+        bean.setTotalPromotoNum(10);
+        bean.setFinishedPromotoNum(1);
         bean.setSelected(false);
         bean.setPosition(1);
         bean.setUrgent(true);
         mBeanList.add(bean);
 
         bean = new PromotoBean();
-        bean.setContent("#编程");
+        bean.setTagName("#编程");
         bean.setSelected(true);
-        bean.setPosition(2);
+        bean.setPosition(1);
+        bean.setUrgent(false);
+        mBeanList.add(bean);
+
+        bean = new PromotoBean();
+        bean.setContent("写作");
+        bean.setSelected(true);
+        bean.setPosition(1);
         bean.setUrgent(false);
         mBeanList.add(bean);
 
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

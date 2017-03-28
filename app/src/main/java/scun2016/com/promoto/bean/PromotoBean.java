@@ -25,6 +25,10 @@ public class PromotoBean extends DataSupport{
     private boolean selected;
     //土豆完成的时间
     private long finishedTime;
+    //预计番茄总数
+    private int totalPromotoNum;
+    //已完成番茄数目
+    private int finishedPromotoNum;
 
     private int state;
 
@@ -84,5 +88,21 @@ public class PromotoBean extends DataSupport{
 
     public void setUrgent(boolean urgent) {
         this.urgent = urgent;
+    }
+
+    public int getTotalPromotoNum() {
+        return totalPromotoNum;
+    }
+
+    public void setTotalPromotoNum(int totalPromotoNum) {
+        this.totalPromotoNum = totalPromotoNum;
+    }
+
+    public int getFinishedPromotoNum() {
+        return finishedPromotoNum;
+    }
+
+    public void setFinishedPromotoNum(int finishedPromotoNum) {
+        this.finishedPromotoNum = finishedPromotoNum;
     }
 }

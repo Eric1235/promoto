@@ -9,7 +9,7 @@
     <include layout="@layout/view_line_big"/>
     <include
         layout="@layout/view_line"/>
-    <EditText
+    <TextView
         android:id="@+id/et_new_task"
         android:layout_width="match_parent"
         android:layout_height="50dp"

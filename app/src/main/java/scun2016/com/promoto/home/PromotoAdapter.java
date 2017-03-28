@@ -18,6 +18,7 @@ import itemtouchhelperextension.Extension;
 import itemtouchhelperextension.ItemTouchHelperExtension;
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.bean.PromotoBean;
+import scun2016.com.promoto.util.SpannableStringUtil;
 
 /**
  * Created by EricLi.
@@ -170,7 +171,8 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         //在这里进行内容绑定
         public void bind(final PromotoBean bean,final int position){
-            tvContent.setText(bean.getContent());
+//            tvContent.setText(bean.getContent());
+            SpannableStringUtil.setString(tvContent, bean, mContext);
             mBeanSelect.setSelected(bean.isSelected());
             mBeanUrgent.setSelected(bean.isUrgent());
             mBeanSelect.setOnClickListener(new View.OnClickListener() {
