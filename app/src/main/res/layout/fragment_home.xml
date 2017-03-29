@@ -10,11 +10,14 @@
     <include
         layout="@layout/view_line"/>
     <TextView
-        android:id="@+id/et_new_task"
+        android:id="@+id/tv_new_task"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:paddingLeft="10dp"
+        android:gravity="center_vertical"
         android:background="@null"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/text_color_gray"
         android:hint="@string/input_new_task"/>
 
     <include

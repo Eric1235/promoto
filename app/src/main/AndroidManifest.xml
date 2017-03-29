@@ -23,6 +23,8 @@
         <activity android:name=".TestActivity">
 
         </activity>
+        <activity android:name=".home.EditPromotoActivity"/>
+        <activity android:name=".home.AddPromotoActivity"></activity>
     </application>
 
 </manifest>

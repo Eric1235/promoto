@@ -6,6 +6,7 @@ package scun2016.com.promoto.home;
  * Email: EricLi1235@gmial.com
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,8 @@ import scun2016.com.promoto.bean.PromotoBean;
  * 主页
  */
 public class HomeFragment extends BaseFragment{
+
+    private TextView tvAddPromoto;
 
     private RecyclerView mRecyclerView;
     private List<PromotoBean> mBeanList;
@@ -51,6 +55,18 @@ public class HomeFragment extends BaseFragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
+
+        tvAddPromoto = (TextView) view.findViewById(R.id.tv_new_task);
+
+        tvAddPromoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到AddPromotoAvtivity
+                Intent intent = new Intent(getBaseActivity(), AddPromotoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_promoto);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
         //解决屏闪问题

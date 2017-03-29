@@ -12,6 +12,7 @@ import itemtouchhelperextension.ItemTouchHelperExtension;
  * Email: EricLi1235@gmial.com
  */
 
+//继承自扩展包的
 public class ItemTouch extends ItemTouchHelperExtension.Callback {
 
     private PromotoAdapter mAdapter;
@@ -20,6 +21,7 @@ public class ItemTouch extends ItemTouchHelperExtension.Callback {
         mAdapter = adapter;
     }
 
+    //确定item可以进行滑动的方向
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;

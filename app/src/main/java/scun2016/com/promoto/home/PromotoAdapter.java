@@ -1,6 +1,7 @@
 package scun2016.com.promoto.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,8 +27,10 @@ import scun2016.com.promoto.util.SpannableStringUtil;
  * Email: EricLi1235@gmial.com
  */
 
+//recyclerview的适配器类，包含了三种item可以使用，但是目前只使用一种右滑删除的item
 public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter{
 
+    //item的类型
     public static final int ITEM_TYPE_RECYCLER_WIDTH = 1000;
     public static final int ITEM_TYPE_ACTION_WIDTH = 1001;
     public static final int ITEM_TYPE_ACTION_WIDTH_NO_SPRING = 1002;
@@ -52,11 +55,13 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mItemTouchHelperExtension = itemTouchHelperExtension;
     }
 
+    //删除item
     private void doDelete(int position){
         mBeanList.remove(position);
         notifyItemRemoved(position);
     }
 
+    //上下移动，并交换item
     public void move(int from, int to){
         Collections.swap(mBeanList, from, to);
         notifyItemMoved(from, to);
@@ -102,13 +107,16 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ItemBaseViewHolder baseViewHolder = (ItemBaseViewHolder) holder;
         PromotoBean bean = mBeanList.get(position);
         ((ItemBaseViewHolder) holder).bind(bean, position);
+        //整个item的点击事件
         baseViewHolder.mViewContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Item Content click: #" + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                //前往修改界面
+                mContext.startActivity(new Intent(mContext, EditPromotoActivity.class));
             }
         });
 
+        //确认是不同的item，给予不同的点击事件
         if (holder instanceof ItemViewHolderWithRecyclerWidth){
             ItemViewHolderWithRecyclerWidth viewHolder = (ItemViewHolderWithRecyclerWidth)holder;
             viewHolder.mActionViewDelete.setOnClickListener(new View.OnClickListener() {
@@ -136,15 +144,6 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position,
-            List<Object> payloads) {
-        if (payloads == null || payloads.isEmpty()){
-            onBindViewHolder(holder, position);
-        } else {
-            notifyItemChanged(position, payloads.get(position));
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -171,7 +170,6 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         //在这里进行内容绑定
         public void bind(final PromotoBean bean,final int position){
-//            tvContent.setText(bean.getContent());
             SpannableStringUtil.setString(tvContent, bean, mContext);
             mBeanSelect.setSelected(bean.isSelected());
             mBeanUrgent.setSelected(bean.isUrgent());
@@ -202,14 +200,17 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    //普通类
     class ItemViewHolderWithRecyclerWidth extends ItemBaseViewHolder{
         View mActionViewDelete;
         public ItemViewHolderWithRecyclerWidth(View itemView) {
             super(itemView);
+            //两种view之间有着一定个格式，起码删除layout的命名是一样的
             mActionViewDelete = itemView.findViewById(R.id.list_action_delete);
         }
     }
 
+    //具备删除和刷新的item
     class ItemSwipeWithActionWidthViewHolder extends ItemBaseViewHolder implements Extension{
         View mActionViewDelete;
         View mActionViewRefresh;
@@ -220,6 +221,7 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mActionViewRefresh = itemView.findViewById(R.id.view_list_repo_action_update);
         }
 
+        //返回滑动距离的大小
         @Override
         public float getActionWidth() {
             return mActionContainer.getWidth();
@@ -232,6 +234,7 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
         }
 
+        //返回滑动距离的大小
         @Override
         public float getActionWidth() {
             return mActionContainer.getWidth();

@@ -36,6 +36,7 @@ import java.util.List;
 
 import scun2016.com.promoto.R;
 
+//对本来的类进行了修改，增加了动画
 public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
         implements RecyclerView.OnChildAttachStateChangeListener {
 
