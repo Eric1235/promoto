@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -28,7 +29,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 import itemtouchhelperextension.ItemTouchHelperExtension;
@@ -122,49 +124,11 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
     }
 
     private void initData(){
-        mBeanList = new ArrayList<>();
-        PromotoBean bean = new PromotoBean();
-        bean.setContent("吃饭");
-        bean.setTagName("#休息");
-        bean.setTotalPromotoNum(10);
-        bean.setFinishedPromotoNum(1);
-        bean.setSelected(true);
-        bean.setUrgent(true);
-        bean.setPosition(1);
-        mBeanList.add(bean);
-
-        bean = new PromotoBean();
-        bean.setContent("学习");
-        bean.setTotalPromotoNum(10);
-        bean.setFinishedPromotoNum(1);
-        bean.setSelected(true);
-        bean.setPosition(1);
-        bean.setUrgent(false);
-        mBeanList.add(bean);
-
-        bean = new PromotoBean();
-        bean.setTagName("#睡觉");
-        bean.setTotalPromotoNum(10);
-        bean.setFinishedPromotoNum(1);
-        bean.setSelected(false);
-        bean.setPosition(1);
-        bean.setUrgent(true);
-        mBeanList.add(bean);
-
-        bean = new PromotoBean();
-        bean.setTagName("#编程");
-        bean.setSelected(true);
-        bean.setPosition(1);
-        bean.setUrgent(false);
-        mBeanList.add(bean);
-
-        bean = new PromotoBean();
-        bean.setContent("写作");
-        bean.setSelected(true);
-        bean.setPosition(1);
-        bean.setUrgent(false);
-        mBeanList.add(bean);
-
+        //在数据库查询数据
+        mBeanList = DataSupport.findAll(PromotoBean.class);
+        if (mAdapter != null){
+            mAdapter.updateData(mBeanList);
+        }
     }
 
     @Override
@@ -184,6 +148,12 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -209,8 +179,50 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
         //监听enter键被按下
         if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
             content = mEditText.getText().toString();
+            Log.d("Eric", "content = " + content);
+            if (content != null && !content.equals("")){
+                savePromoto(content);
+            }
             dialog.dismiss();
+
+            //刷新数据
+            initData();
         }
         return false;
+    }
+
+    //存储番茄任务
+    private void savePromoto(String content){
+        PromotoBean bean = getBaseBean();
+        //有标签
+        if (content.startsWith("#")){
+            int len = content.indexOf(" ");
+            //有两个内容
+            if (len != -1){
+                String tagName = content.substring(0, len);
+                //进行切割
+                String contentName = content.substring(len+1, content.length());
+                bean.setTagName(tagName);
+                bean.setContent(contentName);
+            } else {
+                bean.setTagName(content);
+            }
+        } else {
+            bean.setContent(content);
+        }
+        bean.save();
+    }
+
+    //预先填充好数据
+    private PromotoBean getBaseBean(){
+        PromotoBean bean = new PromotoBean();
+        bean.setPosition(1);
+        bean.setUrgent(false);
+        bean.setFinishedPromotoNum(0);
+        bean.setTotalPromotoNum(0);
+        bean.setSelected(false);
+        bean.setState(0);
+        bean.setFinishedTime(0);
+        return bean;
     }
 }

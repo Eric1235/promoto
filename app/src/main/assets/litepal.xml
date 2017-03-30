@@ -3,6 +3,6 @@
     <dbname value="promoto"/>
     <version value="1"/>
     <list>
-
+        <mapping class="scun2016.com.promoto.bean.PromotoBean"></mapping>
     </list>
 </litepal>

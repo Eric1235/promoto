@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.crud.callback.UpdateOrDeleteCallback;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -56,9 +58,16 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     //删除item
-    private void doDelete(int position){
-        mBeanList.remove(position);
-        notifyItemRemoved(position);
+    private void doDelete(final int position){
+        PromotoBean bean = mBeanList.get(position);
+        //删除成功以后回调
+        bean.deleteAsync().listen(new UpdateOrDeleteCallback() {
+            @Override
+            public void onFinish(int rowsAffected) {
+                mBeanList.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
     }
 
     //上下移动，并交换item
