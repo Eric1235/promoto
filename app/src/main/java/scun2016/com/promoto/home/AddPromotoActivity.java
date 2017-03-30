@@ -1,5 +1,6 @@
 package scun2016.com.promoto.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -8,7 +9,6 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 
 import scun2016.com.promoto.R;
-import scun2016.com.promoto.base.BaseActivity;
 import scun2016.com.promoto.bean.PromotoBean;
 
 /**
@@ -16,8 +16,8 @@ import scun2016.com.promoto.bean.PromotoBean;
  * on 2017/3/27 in 下午9:17
  * Email: EricLi1235@gmial.com
  */
-//添加新的任务
-public class AddPromotoActivity extends BaseActivity {
+//添加新的任务，废弃，使用自定义弹窗去做
+public class AddPromotoActivity extends Activity {
     private EditText etAddPromoto;
 
     private String mContent;
@@ -63,6 +63,18 @@ public class AddPromotoActivity extends BaseActivity {
     }
 
     private void getContent(){
+        mContent = etAddPromoto.getText().toString();
+        //输入中含有tag
+        if (mContent.startsWith("#")){
+            if (mContent.contains(" ")){
+                String[] s = mContent.split(" ");
 
+            } else {
+                mPromotoBean.setTagName(mContent);
+            }
+        } else {
+            //单纯的content
+            mPromotoBean.setContent(mContent);
+        }
     }
 }

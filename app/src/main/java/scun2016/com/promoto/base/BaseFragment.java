@@ -33,6 +33,11 @@ public class BaseFragment extends Fragment{
         imm.showSoftInput(view, 0);
     }
 
+    protected void toggleKeyBoard(){
+        InputMethodManager imm = (InputMethodManager) getBaseActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
     protected void hideKeyBoard() {
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0); //强制隐藏键盘
