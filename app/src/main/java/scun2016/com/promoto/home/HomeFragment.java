@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,7 @@ import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseFragment;
 import scun2016.com.promoto.bean.PromotoBean;
 import scun2016.com.promoto.util.DensityUtil;
+import scun2016.com.promoto.widget.SnackBarUtil;
 
 /**
  * 主页
@@ -55,6 +57,8 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
 
     private EditText mEditText;//输入新任务；
     private AlertDialog dialog;
+
+    private Snackbar mSnackbar;//提示条
 
     private int textViewX;
     private int textViewY;
@@ -114,6 +118,7 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
         //解决屏闪问题
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         mAdapter = new PromotoAdapter(getBaseActivity(), mBeanList);
+        mAdapter.setOnItemDeleteListener(mOnItemDeleteListener);
         mCallback  = new ItemTouch(mAdapter);
         mItemTouchHelper = new ItemTouchHelperExtension(mCallback);
 
@@ -156,6 +161,22 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
         initData();
     }
 
+    //存储数据
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_home, menu);
@@ -190,6 +211,24 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
         }
         return false;
     }
+
+    private PromotoAdapter.onItemDeleteListener mOnItemDeleteListener =
+            new PromotoAdapter.onItemDeleteListener() {
+        @Override
+        public void onItemDelete(final int position, final PromotoBean bean) {
+            mSnackbar = SnackBarUtil.LongSnackbar(mRecyclerView,"删除成功", SnackBarUtil.Alert);
+            mSnackbar.setAction("撤销", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mBeanList.add(position, bean);
+                    mAdapter.updateData(mBeanList);
+                }
+            });
+
+            mSnackbar.show();
+
+        }
+    };
 
     //存储番茄任务
     private void savePromoto(String content){

@@ -38,6 +38,8 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int ITEM_TYPE_ACTION_WIDTH_NO_SPRING = 1002;
     private ItemTouchHelperExtension mItemTouchHelperExtension;
 
+    private onItemDeleteListener mOnItemDeleteListener;
+
     private Context mContext;
 
     private List<PromotoBean> mBeanList;
@@ -59,13 +61,16 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     //删除item
     private void doDelete(final int position){
-        PromotoBean bean = mBeanList.get(position);
+        final PromotoBean bean = mBeanList.get(position);
         //删除成功以后回调
         bean.deleteAsync().listen(new UpdateOrDeleteCallback() {
             @Override
             public void onFinish(int rowsAffected) {
                 mBeanList.remove(position);
                 notifyItemRemoved(position);
+                if (mOnItemDeleteListener != null){
+                    mOnItemDeleteListener.onItemDelete(position, bean);
+                }
             }
         });
     }
@@ -153,6 +158,10 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    public void setOnItemDeleteListener(
+            onItemDeleteListener onItemDeleteListener) {
+        mOnItemDeleteListener = onItemDeleteListener;
+    }
 
     @Override
     public int getItemCount() {
@@ -250,4 +259,8 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    //删除
+    public interface onItemDeleteListener{
+        void onItemDelete(int position, PromotoBean bean);
+    }
 }
