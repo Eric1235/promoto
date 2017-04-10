@@ -117,16 +117,19 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ItemBaseViewHolder baseViewHolder = (ItemBaseViewHolder) holder;
-        PromotoBean bean = mBeanList.get(position);
+        final PromotoBean bean = mBeanList.get(position);
         ((ItemBaseViewHolder) holder).bind(bean, position);
         //整个item的点击事件
         baseViewHolder.mViewContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //前往修改界面
-                mContext.startActivity(new Intent(mContext, EditPromotoActivity.class));
+                Intent intent = new Intent(mContext, EditPromotoActivity.class);
+                intent.putExtra(EditPromotoActivity.PROMOTO_BENA, bean);
+                intent.putExtra("position", position);
+                mContext.startActivity(intent);
             }
         });
 

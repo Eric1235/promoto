@@ -1,5 +1,7 @@
 package scun2016.com.promoto.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Keep;
 
 import org.litepal.crud.DataSupport;
@@ -14,7 +16,7 @@ import org.litepal.crud.DataSupport;
  * 数据库操作的bean
  */
 @Keep
-public class PromotoBean extends DataSupport{
+public class PromotoBean extends DataSupport implements Parcelable {
     //标签名
     private String tagName;
     //土豆内容
@@ -105,4 +107,50 @@ public class PromotoBean extends DataSupport{
     public void setFinishedPromotoNum(int finishedPromotoNum) {
         this.finishedPromotoNum = finishedPromotoNum;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.tagName);
+        dest.writeString(this.content);
+        dest.writeByte(this.urgent ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.selected ? (byte) 1 : (byte) 0);
+        dest.writeLong(this.finishedTime);
+        dest.writeInt(this.totalPromotoNum);
+        dest.writeInt(this.finishedPromotoNum);
+        dest.writeInt(this.state);
+        dest.writeInt(this.position);
+    }
+
+    public PromotoBean() {
+    }
+
+    protected PromotoBean(Parcel in) {
+        this.tagName = in.readString();
+        this.content = in.readString();
+        this.urgent = in.readByte() != 0;
+        this.selected = in.readByte() != 0;
+        this.finishedTime = in.readLong();
+        this.totalPromotoNum = in.readInt();
+        this.finishedPromotoNum = in.readInt();
+        this.state = in.readInt();
+        this.position = in.readInt();
+    }
+
+    public static final Parcelable.Creator<PromotoBean> CREATOR =
+            new Parcelable.Creator<PromotoBean>() {
+                @Override
+                public PromotoBean createFromParcel(Parcel source) {
+                    return new PromotoBean(source);
+                }
+
+                @Override
+                public PromotoBean[] newArray(int size) {
+                    return new PromotoBean[size];
+                }
+            };
 }

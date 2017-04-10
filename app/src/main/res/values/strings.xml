@@ -11,4 +11,5 @@
     <string name="remind_time">提醒时间</string>
     <string name="remark">备注</string>
     <string name="delete_task">删除任务</string>
+    <string name="upgrade">升级</string>
 </resources>
