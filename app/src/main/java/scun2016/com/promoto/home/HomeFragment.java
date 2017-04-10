@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.litepal.crud.DataSupport;
 
@@ -88,7 +89,7 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
                 //跳转到AddPromotoAvtivity
                 AlertDialog.Builder builder = new AlertDialog.Builder(getBaseActivity(), R.style.Dialog);
                 View view = View
-                        .inflate(getActivity(), R.layout.activity_add_promoto, null);
+                        .inflate(getActivity(), R.layout.item_edittext, null);
                 mEditText = (EditText) view.findViewById(R.id.et_new_task);
                 mEditText.setOnEditorActionListener(HomeFragment.this);
                 builder.setView(view);
@@ -186,12 +187,22 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
     //菜单点击事件
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_give_up_promoto:
+                Toast.makeText(getBaseActivity(),"放弃番茄", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_history:
+                Toast.makeText(getBaseActivity(),"任务历史", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        toggleKeyBoard();
+        hideKeyBoard();
     }
 
     @Override
@@ -212,12 +223,13 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
         return false;
     }
 
+
     private PromotoAdapter.onItemDeleteListener mOnItemDeleteListener =
             new PromotoAdapter.onItemDeleteListener() {
         @Override
         public void onItemDelete(final int position, final PromotoBean bean) {
-            mSnackbar = SnackBarUtil.LongSnackbar(mRecyclerView,"删除成功", SnackBarUtil.Alert);
-            mSnackbar.setAction("撤销", new View.OnClickListener() {
+            mSnackbar = SnackBarUtil.LongSnackbar(mRecyclerView,"删除成功", SnackBarUtil.Info);
+            mSnackbar.setAction(getString(R.string.cancel), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mBeanList.add(position, bean);

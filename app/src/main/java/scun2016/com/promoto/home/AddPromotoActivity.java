@@ -34,7 +34,7 @@ public class AddPromotoActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_promoto);
+        setContentView(R.layout.item_edittext);
         initVew();
         initListener();
     }

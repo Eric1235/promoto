@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/btn_check"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_check_selector"
+        />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/btn_check"
+        android:layout_toLeftOf="@+id/btn_emerge"
+        android:layout_marginLeft="8dp"
+        android:text="@string/add_sub_task"
+        android:textSize="@dimen/text_size_middle"
+        android:textColor="@color/text_color_gray_light"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/enter"
+        android:layout_alignParentRight="true"
+        />
+
+</RelativeLayout>

@@ -3,4 +3,12 @@
     <string name="input_new_task">添加新任务</string>
     <string name="delete">删除?</string>
     <string name="undo">取消</string>
+    <string name="cancel">撤销</string>
+
+    <string name="edit_task">编辑任务</string>
+    <string name="add_sub_task">添加子任务</string>
+    <string name="predict_promoto_count">预计番茄数</string>
+    <string name="remind_time">提醒时间</string>
+    <string name="remark">备注</string>
+    <string name="delete_task">删除任务</string>
 </resources>

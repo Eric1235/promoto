@@ -26,7 +26,13 @@
         <activity android:name=".TestActivity">
 
         </activity>
-        <activity android:name=".home.EditPromotoActivity"/>
+        <activity android:name=".home.EditPromotoActivity"
+            android:label="@string/edit_task"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity android:name=".home.AddPromotoActivity"
             android:theme="@style/Transparent"></activity>
     </application>

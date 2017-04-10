@@ -56,7 +56,7 @@ public class CustomDialog extends AlertDialog{
     }
 
     private void init(){
-        View view = View.inflate(mContext, R.layout.activity_add_promoto, null);
+        View view = View.inflate(mContext, R.layout.item_edittext, null);
         setContentView(view);
         Window dialogWindow = getWindow();
         WindowManager manager = ((Activity) mContext).getWindowManager();
