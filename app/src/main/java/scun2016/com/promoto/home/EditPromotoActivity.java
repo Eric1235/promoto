@@ -1,17 +1,24 @@
 package scun2016.com.promoto.home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseActivity;
 import scun2016.com.promoto.bean.PromotoBean;
+import scun2016.com.promoto.widget.CustomAlertDialog;
+import scun2016.com.promoto.widget.NumberKeyboardDialog;
+import scun2016.com.promoto.widget.OnNumberConfirmListener;
 
 /**
  * Created by EricLi.
@@ -30,14 +37,57 @@ public class EditPromotoActivity extends BaseActivity{
     private ImageButton btnEmerge;
     private ImageButton btnSelected;
 
+    private RelativeLayout mRemindTimeLayout;
+
+    private RelativeLayout mPromotoCount;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_promoto);
         Toolbar toolbar = (Toolbar) findViewById(R.id.edit_tool_bar);
+
+        initView();
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initView(){
+        mRemindTimeLayout = (RelativeLayout)findViewById(R.id.item_remind_time);
+        mRemindTimeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomAlertDialog.showAlertDialog(EditPromotoActivity.this, "Hello", "Hi",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                CustomAlertDialog.showAlertDialog(EditPromotoActivity.this, "Hi",
+                                        "Hi", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        });
+                            }
+                        });
+            }
+        });
+
+        mPromotoCount = (RelativeLayout) findViewById(R.id.item_promoto_count);
+        mPromotoCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NumberKeyboardDialog.sowNumberDialog(EditPromotoActivity.this,
+                        new OnNumberConfirmListener() {
+                            @Override
+                            public void getNumber(String number) {
+                                Toast.makeText(EditPromotoActivity.this, number, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
     }
 
     private void getData(){

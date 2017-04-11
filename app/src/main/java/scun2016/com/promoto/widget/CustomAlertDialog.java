@@ -31,7 +31,8 @@ public class CustomAlertDialog {
                 .setPositiveButton(context.getText(R.string.upgrade), positiveListener)
                 .setNegativeButton(context.getText(R.string.undo), null)
                 .create();
-
-
+        dialog.show();
     }
+
+
 }

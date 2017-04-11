@@ -38,6 +38,8 @@ public class NumberKeyboardView extends View{
 
     private int type;
 
+    private OnNumberClickListener mOnNumberClickListener;
+
 
     public NumberKeyboardView(Context context) {
         super(context);
@@ -160,6 +162,15 @@ public class NumberKeyboardView extends View{
                 number = "9";
             }
         }
+
+        if (mOnNumberClickListener != null && number != null){
+            mOnNumberClickListener.onNumberReturn(number);
+        }
+    }
+
+    public void setOnNumberClickListener(
+            OnNumberClickListener onNumberClickListener) {
+        mOnNumberClickListener = onNumberClickListener;
     }
 
     public interface OnNumberClickListener{

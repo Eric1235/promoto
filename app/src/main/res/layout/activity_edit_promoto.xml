@@ -12,11 +12,11 @@
     </android.support.v7.widget.Toolbar>
 
     <include
-        android:id="@+id/item_task"
+        android:id="@+id/item_edit_task"
         layout="@layout/item_edit_task"/>
 
     <include
-        android:id="@+id/item_task"
+        android:id="@+id/item_add_sub_task"
         layout="@layout/item_add_sub_task"/>
 
     <include
