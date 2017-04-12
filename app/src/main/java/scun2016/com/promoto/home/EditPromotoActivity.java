@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import scun2016.com.promoto.R;
@@ -26,7 +27,7 @@ import scun2016.com.promoto.widget.OnNumberConfirmListener;
  * Email: EricLi1235@gmial.com
  */
 //重新编辑任务
-public class EditPromotoActivity extends BaseActivity{
+public class EditPromotoActivity extends BaseActivity implements View.OnClickListener{
 
     public static final String PROMOTO_BENA = "promoto_bean";
 
@@ -37,57 +38,47 @@ public class EditPromotoActivity extends BaseActivity{
     private ImageButton btnEmerge;
     private ImageButton btnSelected;
 
-    private RelativeLayout mRemindTimeLayout;
+    private TextView tvPromotoCount;//预计番茄数
 
+    private ImageButton btnConfirm;
+
+    private RelativeLayout mRemindTimeLayout;
+    private RelativeLayout mAddSubTaskLayout;
     private RelativeLayout mPromotoCount;
+    private RelativeLayout mEditTaskLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_promoto);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.edit_tool_bar);
-
+        getData();
         initView();
-
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        initListener();
+        initData();
     }
 
     private void initView(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.edit_tool_bar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         mRemindTimeLayout = (RelativeLayout)findViewById(R.id.item_remind_time);
-        mRemindTimeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CustomAlertDialog.showAlertDialog(EditPromotoActivity.this, "Hello", "Hi",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                CustomAlertDialog.showAlertDialog(EditPromotoActivity.this, "Hi",
-                                        "Hi", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                            }
-                                        });
-                            }
-                        });
-            }
-        });
-
+        mAddSubTaskLayout = (RelativeLayout)findViewById(R.id.item_add_sub_task);
         mPromotoCount = (RelativeLayout) findViewById(R.id.item_promoto_count);
-        mPromotoCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NumberKeyboardDialog.sowNumberDialog(EditPromotoActivity.this,
-                        new OnNumberConfirmListener() {
-                            @Override
-                            public void getNumber(String number) {
-                                Toast.makeText(EditPromotoActivity.this, number, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
-        });
+        mEditTaskLayout = (RelativeLayout)findViewById(R.id.item_edit_task);
+        etTask = (EditText) mEditTaskLayout.findViewById(R.id.et_task);
+        btnEmerge = (ImageButton) mEditTaskLayout.findViewById(R.id.btn_emerge);
+        btnSelected = (ImageButton) mEditTaskLayout.findViewById(R.id.btn_check);
+        btnConfirm = (ImageButton) findViewById(R.id.btn_confirm);
+    }
+
+    private void initListener(){
+        mAddSubTaskLayout.setOnClickListener(this);
+        mRemindTimeLayout.setOnClickListener(this);
+        mPromotoCount.setOnClickListener(this);
+        btnConfirm.setOnClickListener(this);
+        btnSelected.setOnClickListener(this);
+        btnEmerge.setOnClickListener(this);
     }
 
     private void getData(){
@@ -96,7 +87,55 @@ public class EditPromotoActivity extends BaseActivity{
     }
 
     private void initData(){
+        etTask.setText(mBean.getContent());
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.item_remind_time:
+                showUpgradeDialog();
+                break;
+            case R.id.item_promoto_count:
+                showNumberDialog();
+                break;
+            case R.id.item_add_sub_task:
+                showUpgradeDialog();
+                break;
+            case R.id.btn_confirm:
+                break;
+            case R.id.btn_check:
+                break;
+            case R.id.btn_emerge:
+                break;
+            default:
+                break;
+        }
+    }
+
+    //弹出升级框
+    private void showUpgradeDialog(){
+        CustomAlertDialog.showAlertDialog(EditPromotoActivity.this,
+                getString(R.string.pro_tip_title),
+                getString(R.string.pro_tip_content),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+    }
+
+    //弹出数字框
+    private void showNumberDialog(){
+        NumberKeyboardDialog.sowNumberDialog(EditPromotoActivity.this,
+                new OnNumberConfirmListener() {
+                    @Override
+                    public void getNumber(String number) {
+                        Toast.makeText(EditPromotoActivity.this, number,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override

@@ -7,8 +7,17 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/edit_tool_bar"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="@dimen/toolbar_height">
+        android:background="@color/list_background"
+        android:layout_height="@dimen/toolbar_height"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/mr"
+            android:background="@drawable/confirm"/>
     </android.support.v7.widget.Toolbar>
 
     <include

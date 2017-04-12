@@ -12,5 +12,8 @@
     <string name="remark">备注</string>
     <string name="delete_task">删除任务</string>
     <string name="upgrade">升级</string>
-    <string name="confirm">确定</string>
+    <string name="confirm">确认</string>
+
+    <string name="pro_tip_title">此功能为高级功能，请升级至高级版后使用</string>
+    <string name="pro_tip_content">升级高级版可拥有更多独享功能，让你如虎添翼。点击下面的按钮了解更多的信息。</string>
 </resources>

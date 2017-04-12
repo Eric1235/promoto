@@ -5,7 +5,7 @@
               android:focusableInTouchMode="true"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/white">
+              >
     <include layout="@layout/view_line_big"/>
     <include
         layout="@layout/view_line"/>
@@ -15,7 +15,7 @@
         android:layout_height="@dimen/toolbar_height"
         android:paddingLeft="10dp"
         android:gravity="center_vertical"
-        android:background="@null"
+        android:background="@color/white"
         android:textSize="@dimen/text_size_normal"
         android:textColor="@color/text_color_gray"
         android:hint="@string/input_new_task"/>

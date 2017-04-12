@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+    android:background="@color/light_gray">
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        android:background="@color/colorPrimary"
+        android:background="@color/list_background"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/overFlowMenuStyle">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,11 +40,17 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tool_bar"/>
 
+    <View
+        android:layout_above="@+id/view_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"/>
+
     <scun2016.com.promoto.view.ViewIndicator
         android:id="@+id/view_indicator"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:paddingTop="5dp"
-        android:background="@color/green"/>
+        android:background="@color/white"/>
 </RelativeLayout>
