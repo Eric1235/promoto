@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseActivity;
@@ -70,6 +69,7 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
         btnEmerge = (ImageButton) mEditTaskLayout.findViewById(R.id.btn_emerge);
         btnSelected = (ImageButton) mEditTaskLayout.findViewById(R.id.btn_check);
         btnConfirm = (ImageButton) findViewById(R.id.btn_confirm);
+        tvPromotoCount = (TextView)mPromotoCount.findViewById(R.id.tv_promoto_num);
     }
 
     private void initListener(){
@@ -88,6 +88,7 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     private void initData(){
         etTask.setText(mBean.getContent());
+        tvPromotoCount.setText(String.valueOf(mBean.getTotalPromotoNum()));
     }
 
     @Override
@@ -132,8 +133,8 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
                 new OnNumberConfirmListener() {
                     @Override
                     public void getNumber(String number) {
-                        Toast.makeText(EditPromotoActivity.this, number,
-                                Toast.LENGTH_SHORT).show();
+                        mBean.setTotalPromotoNum(Integer.parseInt(number));
+                        tvPromotoCount.setText(number);
                     }
                 });
     }
@@ -145,6 +146,9 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     //检查参数
     private boolean checkParamBeforeSubmit(){
-        return false;
+        if (etTask.getText().toString() == ""){
+            return false;
+        }
+        return true;
     }
 }

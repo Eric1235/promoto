@@ -166,6 +166,7 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
     @Override
     public void onPause() {
         super.onPause();
+        saveData();
     }
 
     @Override
@@ -204,6 +205,13 @@ public class HomeFragment extends BaseFragment implements DialogInterface.OnDism
     public void onDismiss(DialogInterface dialog) {
         hideKeyBoard();
     }
+
+    private void saveData(){
+        for (PromotoBean bean : mBeanList){
+            bean.save();
+        }
+    }
+
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

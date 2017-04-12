@@ -139,17 +139,17 @@ public class NumberKeyboardView extends View{
             if (y >= 0 && y <= mRectHeight + 10){
                 number = "1";
             } else if (y > mRectHeight + 10 && y <= 2 * mRectHeight + 20){
-                number = "3";
+                number = "4";
             } else if (y > 2 + mRectHeight + 30 && y <= 3 * mRectHeight + 30){
-                number = "5";
+                number = "7";
             }
         } else if (x > 20 + mRectWidth && x <= 20 + 2 * mRectWidth){
             if (y >= 0 && y <= mRectHeight + 10){
                 number = "2";
             } else if (y > mRectHeight + 10 && y <= 2 * mRectHeight + 20){
-                number = "4";
+                number = "5";
             } else if (y > 2 + mRectHeight + 30 && y <= 3 * mRectHeight + 30){
-                number = "6";
+                number = "8";
             } else {
                 number = "0";
             }
