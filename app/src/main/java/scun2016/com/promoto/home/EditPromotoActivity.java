@@ -14,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.crud.callback.SaveCallback;
+
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseActivity;
 import scun2016.com.promoto.bean.PromotoBean;
@@ -94,6 +96,9 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
         etTask.setText(result);
         etTask.setSelection(result.length());
         tvPromotoCount.setText(String.valueOf(mBean.getTotalPromotoNum()));
+
+        btnEmerge.setSelected(mBean.isUrgent());
+        btnSelected.setSelected(mBean.isSelected());
     }
 
     @Override
@@ -110,14 +115,22 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btn_confirm:
                 if (checkParamBeforeSubmit()){
-                    finish();
+                    mBean.saveAsync().listen(new SaveCallback() {
+                        @Override
+                        public void onFinish(boolean success) {
+                            finish();
+                        }
+                    });
+
                 } else {
                     Toast.makeText(EditPromotoActivity.this, getString(R.string.task_not_null), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_check:
+                toggleSelect();
                 break;
             case R.id.btn_emerge:
+                toggleEmerge();
                 break;
             default:
                 break;
@@ -183,4 +196,15 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
         return result.toString();
     }
+
+    private void toggleSelect(){
+        mBean.setSelected(!mBean.isSelected());
+        btnSelected.setSelected(mBean.isSelected());
+    }
+
+    private void toggleEmerge(){
+        mBean.setUrgent(!mBean.isUrgent());
+        btnEmerge.setSelected(mBean.isUrgent());
+    }
+
 }

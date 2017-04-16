@@ -24,6 +24,7 @@
         android:layout_toRightOf="@+id/btn_check"
         android:layout_toLeftOf="@+id/btn_emerge"
         android:layout_marginLeft="8dp"
+        android:hint="@string/edit_task"
         android:textSize="@dimen/text_size_normal"
         android:textColor="@color/text_color_gray"
         />
