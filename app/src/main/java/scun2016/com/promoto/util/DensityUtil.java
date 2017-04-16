@@ -10,6 +10,14 @@ import android.content.Context;
 
 //单位转换工具
 public class DensityUtil {
+
+    /**
+     * 不允许工具类进行实例化
+     */
+    private DensityUtil(){
+        //抛出错误
+        throw new Error("不要实例化单位转换工具类");
+    }
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */

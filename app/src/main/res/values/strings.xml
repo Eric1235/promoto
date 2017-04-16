@@ -16,4 +16,6 @@
 
     <string name="pro_tip_title">此功能为高级功能，请升级至高级版后使用</string>
     <string name="pro_tip_content">升级高级版可拥有更多独享功能，让你如虎添翼。点击下面的按钮了解更多的信息。</string>
+    <string name="number_too_long">不允许输入超过规定长度的数据！</string>
+    <string name="task_not_null">任务的内容不能为空</string>
 </resources>

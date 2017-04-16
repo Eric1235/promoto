@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseActivity;
@@ -87,7 +88,11 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initData(){
-        etTask.setText(mBean.getContent());
+        String tag = mBean.getTagName();
+        String content = mBean.getContent();
+        String result = assamblePromoto(tag, content);
+        etTask.setText(result);
+        etTask.setSelection(result.length());
         tvPromotoCount.setText(String.valueOf(mBean.getTotalPromotoNum()));
     }
 
@@ -104,6 +109,11 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
                 showUpgradeDialog();
                 break;
             case R.id.btn_confirm:
+                if (checkParamBeforeSubmit()){
+                    finish();
+                } else {
+                    Toast.makeText(EditPromotoActivity.this, getString(R.string.task_not_null), Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btn_check:
                 break;
@@ -129,7 +139,8 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     //弹出数字框
     private void showNumberDialog(){
-        NumberKeyboardDialog.sowNumberDialog(EditPromotoActivity.this,
+        //设置最长的输入为4位数
+        NumberKeyboardDialog.sowNumberDialog(EditPromotoActivity.this, 4,
                 new OnNumberConfirmListener() {
                     @Override
                     public void getNumber(String number) {
@@ -146,9 +157,30 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     //检查参数
     private boolean checkParamBeforeSubmit(){
-        if (etTask.getText().toString() == ""){
+        String result = etTask.getText().toString();
+        if (result.equals("") || result.equals(" ")){
             return false;
         }
         return true;
+    }
+
+    /**
+     * 组装bean内容
+     * @param tag
+     * @param content
+     * @return
+     */
+    private String assamblePromoto(String tag, String content){
+        StringBuffer result = new StringBuffer();
+        if (tag != null){
+            result.append(tag);
+        }
+
+        if (content != null){
+            result.append(" ");
+            result.append(content);
+        }
+
+        return result.toString();
     }
 }

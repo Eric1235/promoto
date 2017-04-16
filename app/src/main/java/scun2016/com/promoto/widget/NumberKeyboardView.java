@@ -34,6 +34,8 @@ public class NumberKeyboardView extends View{
 
     private float[] xs = new float[3];
     private float[] ys = new float[4];
+
+    private int maxLength;
 //    private float x1, x2, y1, y2;
 
     private int type;
@@ -166,6 +168,14 @@ public class NumberKeyboardView extends View{
         if (mOnNumberClickListener != null && number != null){
             mOnNumberClickListener.onNumberReturn(number);
         }
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
     }
 
     public void setOnNumberClickListener(

@@ -9,6 +9,11 @@ import scun2016.com.promoto.bean.PromotoBean;
  */
 
 public class PromotoBeanUtil {
+
+    private PromotoBeanUtil(){
+        throw new Error("不要实例化工具类");
+    }
+
     //存储番茄任务
     public static void savePromoto(String content){
         PromotoBean bean = getBaseBean();

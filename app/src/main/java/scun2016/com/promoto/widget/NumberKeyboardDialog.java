@@ -25,7 +25,7 @@ public class NumberKeyboardDialog{
      * @param context
      * @param listener
      */
-    public static void sowNumberDialog(Context context, final OnNumberConfirmListener listener){
+    public static void sowNumberDialog(final Context context, final int maxLength, final OnNumberConfirmListener listener){
         final StringBuffer result = new StringBuffer();
         final AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setCancelable(false);
@@ -36,8 +36,10 @@ public class NumberKeyboardDialog{
         lp.width = DensityUtil.dip2px(context,300.0f);
         lp.height = DensityUtil.dip2px(context,450.0f);
         window.setAttributes(lp);
-        NumberKeyboardView numberKeyboardView = (NumberKeyboardView)
+        final NumberKeyboardView numberKeyboardView = (NumberKeyboardView)
                 window.findViewById(R.id.number_view);
+        //设置输入的最长数字
+        numberKeyboardView.setMaxLength(4);
         final TextView tvContent = (TextView) window.findViewById(R.id.tv_content);
         final Button btnDelete = (Button) window.findViewById(R.id.btn_delete);
         Button btnCancel = (Button) window.findViewById(R.id.btn_cancel);
@@ -47,12 +49,16 @@ public class NumberKeyboardDialog{
         numberKeyboardView.setOnNumberClickListener(new NumberKeyboardView.OnNumberClickListener() {
             @Override
             public void onNumberReturn(String number) {
-                result.append(number);
 
-                if (result.length() > 0){
+
+                if (result.length() < maxLength){
+                    result.append(number);
                     btnConfirm.setEnabled(true);
                     btnConfirm.setTextColor(Color.WHITE);
                     btnDelete.setEnabled(true);
+                } else {
+                    SnackBarUtil.ShortSnackbar(numberKeyboardView, context.getString(R.string.number_too_long), SnackBarUtil.Info).show();
+//                    Toast.makeText(context, context.getString(R.string.number_too_long), Toast.LENGTH_SHORT).show();
                 }
 
                 tvContent.setText(result.toString());
