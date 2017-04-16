@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.crud.DataSupport;
 import org.litepal.crud.callback.SaveCallback;
 
 import scun2016.com.promoto.R;
@@ -86,7 +87,8 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     private void getData(){
         Intent i = getIntent();
-        mBean = i.getParcelableExtra(PROMOTO_BENA);
+        int id = i.getIntExtra(PROMOTO_BENA, 1);
+        mBean = DataSupport.find(PromotoBean.class, id);
     }
 
     private void initData(){

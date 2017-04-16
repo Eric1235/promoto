@@ -17,6 +17,7 @@ import org.litepal.crud.DataSupport;
  */
 @Keep
 public class PromotoBean extends DataSupport implements Parcelable {
+    private long id;
     //标签名
     private String tagName;
     //土豆内容
@@ -35,6 +36,14 @@ public class PromotoBean extends DataSupport implements Parcelable {
     private int state;
 
     private int position;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int getPosition() {
         return position;
