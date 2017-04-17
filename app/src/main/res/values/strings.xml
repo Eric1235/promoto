@@ -18,4 +18,22 @@
     <string name="pro_tip_content">升级高级版可拥有更多独享功能，让你如虎添翼。点击下面的按钮了解更多的信息。</string>
     <string name="number_too_long">不允许输入超过规定长度的数据！</string>
     <string name="task_not_null">任务的内容不能为空</string>
+
+    <!--设置-->
+    <string name="account">帐号</string>
+    <string name="login_register">登陆/注册</string>
+    <string name="pro_version">高级版</string>
+    <string name="sync">同步设置</string>
+    <string name="function">功能</string>
+    <string name="sound_effect">音效</string>
+    <string name="promoto_clock">番茄钟</string>
+    <string name="shield_app">屏蔽应用</string>
+    <string name="target">目标</string>
+    <string name="ui">界面</string>
+    <string name="smart_device">智能设备</string>
+    <string name="help">帮助</string>
+    <string name="support_center">支持中心</string>
+    <string name="shake">摇一摇，截屏反馈</string>
+    <string name="update">更新</string>
+    <string name="about">关于</string>
 </resources>

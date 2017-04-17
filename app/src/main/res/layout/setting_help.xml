@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+        style="@style/setting_text_title"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_user"
+            style="@style/setting_image"
+            android:src="@drawable/user"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_user"
+            style="@style/setting_text_content"
+            android:text="@string/login_register"
+            />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_pro"
+            style="@style/setting_image"
+            android:src="@drawable/king"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_pro"
+            style="@style/setting_text_content"
+            android:text="@string/pro_version"
+            />
+    </RelativeLayout>
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_sync"
+            style="@style/setting_image"
+            android:src="@drawable/cloud"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_sync"
+            style="@style/setting_text_content"
+            android:text="@string/sync"
+            />
+    </RelativeLayout>
+</LinearLayout>
