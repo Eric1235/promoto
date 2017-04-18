@@ -10,6 +10,7 @@
         />
 
     <RelativeLayout
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -26,6 +27,7 @@
     <include
         layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/pro_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -41,6 +43,7 @@
     <include
         layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/sync_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

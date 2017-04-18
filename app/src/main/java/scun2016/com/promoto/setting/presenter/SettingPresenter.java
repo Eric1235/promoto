@@ -13,4 +13,8 @@ public class SettingPresenter {
     public SettingPresenter(ISettingView settingView){
         mSettingView = settingView;
     }
+
+    public void setShakeState(boolean b){
+
+    }
 }

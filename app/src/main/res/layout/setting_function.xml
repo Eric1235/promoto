@@ -9,6 +9,7 @@
         />
 
     <RelativeLayout
+        android:id="@+id/sound_effect_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -23,8 +24,9 @@
     </RelativeLayout>
 
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/promoto_clock_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -38,8 +40,9 @@
             />
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/shield_app_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -53,8 +56,9 @@
             />
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/target_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -68,8 +72,9 @@
             />
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/ui_control_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -83,8 +88,9 @@
             />
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/smart_device_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

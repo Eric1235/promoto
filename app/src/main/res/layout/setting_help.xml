@@ -9,6 +9,7 @@
         />
 
     <RelativeLayout
+        android:id="@+id/support_center_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -23,8 +24,9 @@
     </RelativeLayout>
 
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/shake_feedback_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -45,8 +47,9 @@
             android:layout_marginRight="16dp"/>
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/update_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -60,8 +63,9 @@
             />
     </RelativeLayout>
     <include
-        layout="@layout/view_line"/>
+        layout="@layout/view_line2"/>
     <RelativeLayout
+        android:id="@+id/about_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

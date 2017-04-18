@@ -6,5 +6,7 @@ package scun2016.com.promoto.setting.view;
  * Email: EricLi1235@gmial.com
  */
 
-public class ISettingView {
+public interface ISettingView {
+
+    void initShakeSwitch(boolean b);
 }
