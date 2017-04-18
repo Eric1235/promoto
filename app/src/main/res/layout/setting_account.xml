@@ -18,6 +18,7 @@
             style="@style/setting_image"
             android:src="@drawable/user"/>
         <TextView
+            android:id="@+id/tv_user"
             android:layout_toRightOf="@+id/img_user"
             style="@style/setting_text_content"
             android:text="@string/login_register"

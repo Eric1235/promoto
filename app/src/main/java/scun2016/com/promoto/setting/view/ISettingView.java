@@ -9,4 +9,10 @@ package scun2016.com.promoto.setting.view;
 public interface ISettingView {
 
     void initShakeSwitch(boolean b);
+
+    void initAccount(boolean isLogin, String userName);
+
+    void initPro(boolean isPro);
+
+
 }

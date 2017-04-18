@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import scun2016.com.promoto.R;
@@ -45,6 +46,8 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
 
     private Switch mShakeSwitch;//摇一摇开关
 
+    private TextView tvUser;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +74,13 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
         shakeAndFeedbackLayout = (RelativeLayout) view.findViewById(R.id.shake_feedback_layout);
         updateLayout = (RelativeLayout) view.findViewById(R.id.update_layout);
         aboutLayout = (RelativeLayout) view.findViewById(R.id.about_layout);
-        mShakeSwitch = (Switch) view.findViewById(R.id.shake_switch) ;
+        mShakeSwitch = (Switch) view.findViewById(R.id.shake_switch);
+
+
+        tvUser = (TextView) view.findViewById(R.id.tv_user);
+
         initListener();
+        mSettingPresenter.onCreate();
         return view;
     }
 
@@ -107,9 +115,6 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
         });
     }
 
-    private void initData(){
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -123,5 +128,17 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
     @Override
     public void initShakeSwitch(boolean b) {
         mShakeSwitch.setChecked(b);
+    }
+
+    @Override
+    public void initAccount(boolean isLogin, String userName) {
+        if (isLogin){
+            tvUser.setText(userName);
+        }
+    }
+
+    @Override
+    public void initPro(boolean isPro) {
+        mShakeSwitch.setChecked(isPro);
     }
 }
