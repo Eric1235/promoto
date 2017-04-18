@@ -9,4 +9,16 @@ import org.litepal.LitePalApplication;
  */
 
 public class BaseApplication extends LitePalApplication{
+    private static BaseApplication instance = null;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    public static synchronized BaseApplication getInstance() {
+        if (null == instance) {
+            instance = new BaseApplication();
+        }
+        return instance;
+    }
 }

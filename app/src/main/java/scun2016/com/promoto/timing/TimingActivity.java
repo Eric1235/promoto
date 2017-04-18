@@ -6,6 +6,10 @@ package scun2016.com.promoto.timing;
  * Email: EricLi1235@gmial.com
  */
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseActivity;
 
 /**
@@ -13,4 +17,9 @@ import scun2016.com.promoto.base.BaseActivity;
  */
 public class TimingActivity extends BaseActivity{
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_timing);
+    }
 }

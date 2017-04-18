@@ -1,8 +1,12 @@
 package scun2016.com.promoto.setting.presenter;
 
-import scun2016.com.promoto.base.BasePresenter;
+import android.content.Context;
+import android.content.Intent;
+
 import scun2016.com.promoto.bean.User;
+import scun2016.com.promoto.home.EditPromotoActivity;
 import scun2016.com.promoto.setting.view.ISettingView;
+import scun2016.com.promoto.util.sp.AppPreferences;
 
 /**
  * Created by EricLi.
@@ -10,18 +14,78 @@ import scun2016.com.promoto.setting.view.ISettingView;
  * Email: EricLi1235@gmial.com
  */
 
-public class SettingPresenter implements BasePresenter{
+public class SettingPresenter implements ISettingPresenter{
     private User mUser;
     private ISettingView mSettingView;
+    private Context mContext;
+
+    private boolean shakeState;
     public SettingPresenter(ISettingView settingView){
         mSettingView = settingView;
     }
 
-    public void setShakeState(boolean b){
+    @Override
+    public void setShakeState(boolean b) {
+        AppPreferences.getInstance().setShakeState(b);
+    }
+
+    @Override
+    public void gotoLogin() {
+        toLogin();
+    }
+
+    @Override
+    public void gotoPro() {
 
     }
 
-    public void gotoLogin(){
+    @Override
+    public void gotoSync() {
+
+    }
+
+    @Override
+    public void gotoSoundEffect() {
+
+    }
+
+    @Override
+    public void gotoPromotoClock() {
+
+    }
+
+    @Override
+    public void gotoShieldApp() {
+
+    }
+
+    @Override
+    public void gotoTarget() {
+
+    }
+
+    @Override
+    public void gotoUIControl() {
+
+    }
+
+    @Override
+    public void gotoSmartDevice() {
+
+    }
+
+    @Override
+    public void gotoSupportCenter() {
+
+    }
+
+    @Override
+    public void gotoUpdate() {
+
+    }
+
+    @Override
+    public void gotoAbout() {
 
     }
 
@@ -31,9 +95,15 @@ public class SettingPresenter implements BasePresenter{
         mUser.setName("Eric");
         mUser.setPro(true);
 
+        mContext = mSettingView.getSettingContext();
+        shakeState = AppPreferences.getInstance().getShakeState();
+
+        //刷view
         mSettingView.initAccount(true, mUser.getName());
         mSettingView.initPro(mUser.isPro());
-        mSettingView.initShakeSwitch(true);
+        mSettingView.initShakeSwitch(shakeState);
+
+
     }
 
     @Override
@@ -49,5 +119,10 @@ public class SettingPresenter implements BasePresenter{
     @Override
     public void onDestroy() {
 
+    }
+
+    private void toLogin(){
+        Intent i = new Intent(mContext, EditPromotoActivity.class);
+        mContext.startActivity(i);
     }
 }

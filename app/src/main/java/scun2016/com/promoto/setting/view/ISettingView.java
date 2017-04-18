@@ -1,5 +1,7 @@
 package scun2016.com.promoto.setting.view;
 
+import android.content.Context;
+
 /**
  * Created by EricLi.
  * on 2017/4/18 in 上午9:36
@@ -13,6 +15,8 @@ public interface ISettingView {
     void initAccount(boolean isLogin, String userName);
 
     void initPro(boolean isPro);
+
+    Context getSettingContext();
 
 
 }

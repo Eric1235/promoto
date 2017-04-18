@@ -20,6 +20,12 @@ import scun2016.com.promoto.bean.PromotoBean;
  */
 
 public class SpannableStringUtil {
+
+
+    private SpannableStringUtil(){
+        throw new Error("不要实例化工具类");
+    }
+
     public static void setString(TextView textView, PromotoBean bean, final Context context){
         String tagName = bean.getTagName();
         final String content = bean.getContent();

@@ -1,5 +1,6 @@
 package scun2016.com.promoto.setting;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import scun2016.com.promoto.R;
 import scun2016.com.promoto.base.BaseFragment;
@@ -120,7 +120,7 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_layout:
-                Toast.makeText(getBaseActivity(), "login click", Toast.LENGTH_SHORT).show();
+                mSettingPresenter.gotoLogin();
                 break;
         }
     }
@@ -140,5 +140,10 @@ public class SettingFragment extends BaseFragment implements ISettingView, View.
     @Override
     public void initPro(boolean isPro) {
         mShakeSwitch.setChecked(isPro);
+    }
+
+    @Override
+    public Context getSettingContext() {
+        return getContext();
     }
 }
