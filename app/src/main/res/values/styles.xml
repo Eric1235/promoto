@@ -1,9 +1,9 @@
 <resources>
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/list_background</item>
+        <item name="colorPrimaryDark">@color/list_background</item>
+        <item name="colorAccent">@color/list_background</item>
         
         <item name="actionOverflowMenuStyle">@style/overFlowMenuStyle</item>
 
@@ -39,7 +39,6 @@
         <item name="android:textSize">@dimen/text_size_middle</item>
         <item name="android:textColor">@color/list_background</item>
         <item name="android:padding">16dp</item>
-        <item name="android:text">@string/account</item>
     </style>
 
     <style name="setting_text_content">

@@ -5,6 +5,7 @@
               android:layout_height="match_parent">
     <TextView
         style="@style/setting_text_title"
+        android:text="@string/function"
         />
 
     <RelativeLayout
@@ -13,11 +14,11 @@
         <ImageView
             android:id="@+id/img_user"
             style="@style/setting_image"
-            android:src="@drawable/user"/>
+            android:src="@drawable/sound"/>
         <TextView
             android:layout_toRightOf="@+id/img_user"
             style="@style/setting_text_content"
-            android:text="@string/login_register"
+            android:text="@string/sound_effect"
             />
     </RelativeLayout>
 
@@ -29,11 +30,11 @@
         <ImageView
             android:id="@+id/img_pro"
             style="@style/setting_image"
-            android:src="@drawable/king"/>
+            android:src="@drawable/count_time"/>
         <TextView
             android:layout_toRightOf="@+id/img_pro"
             style="@style/setting_text_content"
-            android:text="@string/pro_version"
+            android:text="@string/promoto_clock"
             />
     </RelativeLayout>
     <include
@@ -44,11 +45,56 @@
         <ImageView
             android:id="@+id/img_sync"
             style="@style/setting_image"
-            android:src="@drawable/cloud"/>
+            android:src="@drawable/shield"/>
         <TextView
             android:layout_toRightOf="@+id/img_sync"
             style="@style/setting_text_content"
-            android:text="@string/sync"
+            android:text="@string/shield_app"
+            />
+    </RelativeLayout>
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_target"
+            style="@style/setting_image"
+            android:src="@drawable/target"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_target"
+            style="@style/setting_text_content"
+            android:text="@string/target"
+            />
+    </RelativeLayout>
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_ui"
+            style="@style/setting_image"
+            android:src="@drawable/control"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_ui"
+            style="@style/setting_text_content"
+            android:text="@string/ui"
+            />
+    </RelativeLayout>
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_smart_device"
+            style="@style/setting_image"
+            android:src="@drawable/watch"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_smart_device"
+            style="@style/setting_text_content"
+            android:text="@string/smart_device"
             />
     </RelativeLayout>
 </LinearLayout>

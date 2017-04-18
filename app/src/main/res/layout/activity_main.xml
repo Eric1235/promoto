@@ -38,7 +38,8 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tool_bar"/>
+        android:layout_below="@+id/tool_bar"
+        android:layout_above="@+id/view_indicator"/>
 
     <View
         android:layout_above="@+id/view_indicator"

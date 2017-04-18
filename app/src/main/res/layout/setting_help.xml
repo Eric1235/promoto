@@ -5,19 +5,20 @@
               android:layout_height="match_parent">
     <TextView
         style="@style/setting_text_title"
+        android:text="@string/help"
         />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/img_user"
+            android:id="@+id/img_support_center"
             style="@style/setting_image"
-            android:src="@drawable/user"/>
+            android:src="@drawable/support_center"/>
         <TextView
-            android:layout_toRightOf="@+id/img_user"
+            android:layout_toRightOf="@+id/img_support_center"
             style="@style/setting_text_content"
-            android:text="@string/login_register"
+            android:text="@string/support_center"
             />
     </RelativeLayout>
 
@@ -27,13 +28,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/img_pro"
+            android:id="@+id/img_shake"
             style="@style/setting_image"
-            android:src="@drawable/king"/>
+            android:src="@drawable/feedback"/>
         <TextView
-            android:layout_toRightOf="@+id/img_pro"
+            android:layout_toRightOf="@+id/img_shake"
             style="@style/setting_text_content"
-            android:text="@string/pro_version"
+            android:text="@string/shake"
+            />
+        <Switch
+            android:id="@+id/shake_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"/>
+    </RelativeLayout>
+    <include
+        layout="@layout/view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_update"
+            style="@style/setting_image"
+            android:src="@drawable/update"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_update"
+            style="@style/setting_text_content"
+            android:text="@string/update"
             />
     </RelativeLayout>
     <include
@@ -42,13 +65,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/img_sync"
+            android:id="@+id/img_about"
             style="@style/setting_image"
-            android:src="@drawable/cloud"/>
+            android:src="@drawable/about"/>
         <TextView
-            android:layout_toRightOf="@+id/img_sync"
+            android:layout_toRightOf="@+id/img_about"
             style="@style/setting_text_content"
-            android:text="@string/sync"
+            android:text="@string/about"
             />
     </RelativeLayout>
 </LinearLayout>

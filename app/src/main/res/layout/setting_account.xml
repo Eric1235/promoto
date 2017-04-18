@@ -6,6 +6,7 @@
 
     <TextView
         style="@style/setting_text_title"
+        android:text="@string/account"
         />
 
     <RelativeLayout

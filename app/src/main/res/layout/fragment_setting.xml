@@ -9,15 +9,15 @@
         android:layout_height="match_parent">
 
         <include
+            android:id="@+id/layout_account"
             layout="@layout/setting_account"/>
 
         <include
+            android:id="@+id/layout_function"
             layout="@layout/setting_function"/>
 
         <include
-            layout="@layout/setting_help"/>
-
-        <include
+            android:id="@+id/layout_help"
             layout="@layout/setting_help"/>
 
     </LinearLayout>
