@@ -36,6 +36,17 @@
         <activity android:name=".home.AddPromotoActivity"
             android:theme="@style/Transparent"></activity>
 
+        <service android:name=".timing.TimeService"
+            android:process=":promotoProcess">
+
+        </service>
+
+        <receiver android:name=".timing.AlarmReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="scnu2016.com.promoto"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

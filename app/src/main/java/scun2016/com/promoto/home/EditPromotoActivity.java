@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +33,7 @@ import scun2016.com.promoto.widget.OnNumberConfirmListener;
 //重新编辑任务
 public class EditPromotoActivity extends BaseActivity implements View.OnClickListener{
 
-    public static final String PROMOTO_BENA = "promoto_bean";
+    public static final String BEAN_ID = "beanid";
 
     //传递过来的数据
     private PromotoBean mBean;
@@ -43,7 +44,9 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
 
     private TextView tvPromotoCount;//预计番茄数
 
-    private ImageButton btnConfirm;
+    private ImageButton btnConfirm;//确认修改
+
+    private CardView btnDelete;
 
     private RelativeLayout mRemindTimeLayout;
     private RelativeLayout mAddSubTaskLayout;
@@ -74,6 +77,7 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
         btnSelected = (ImageButton) mEditTaskLayout.findViewById(R.id.btn_check);
         btnConfirm = (ImageButton) findViewById(R.id.btn_confirm);
         tvPromotoCount = (TextView)mPromotoCount.findViewById(R.id.tv_promoto_num);
+        btnDelete = (CardView) findViewById(R.id.car_view_delete);
     }
 
     private void initListener(){
@@ -83,11 +87,12 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
         btnConfirm.setOnClickListener(this);
         btnSelected.setOnClickListener(this);
         btnEmerge.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
     }
 
     private void getData(){
         Intent i = getIntent();
-        int id = i.getIntExtra(PROMOTO_BENA, 1);
+        long id = i.getLongExtra(BEAN_ID, 0);
         mBean = DataSupport.find(PromotoBean.class, id);
     }
 
@@ -133,6 +138,10 @@ public class EditPromotoActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btn_emerge:
                 toggleEmerge();
+                break;
+            case R.id.car_view_delete:
+                mBean.delete();
+                finish();
                 break;
             default:
                 break;

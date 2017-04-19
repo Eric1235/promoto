@@ -7,4 +7,5 @@ package scun2016.com.promoto.setting.function;
  */
 
 public class SmartDeviceActivity {
+
 }

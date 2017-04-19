@@ -21,5 +21,11 @@ public class TimingActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timing);
+//        registerReceiver(new AlarmReceiver(), null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

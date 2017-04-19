@@ -229,3 +229,4 @@ public class CenterIndicator extends View {
         void onCenterClick(int status);
     }
 }
+

@@ -1,6 +1,9 @@
 package scun2016.com.promoto.util.sp;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+
+import scun2016.com.promoto.util.constants.ProjectConfig;
 
 /**
  * Created by EricLi.
@@ -16,7 +19,8 @@ public class AppPreferences extends SharedPrefencesImpl implements IAppConfig{
     }
     @Override
     SharedPreferences getPreferences() {
-        return null;
+        return ProjectConfig.sContext.getSharedPreferences("app_config",
+                Context.MODE_PRIVATE);
     }
 
     public static AppPreferences getInstance(){

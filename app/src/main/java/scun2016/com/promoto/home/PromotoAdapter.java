@@ -127,7 +127,7 @@ public class PromotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             public void onClick(View v) {
                 //前往修改界面
                 Intent intent = new Intent(mContext, EditPromotoActivity.class);
-                intent.putExtra(EditPromotoActivity.PROMOTO_BENA, bean.getId());
+                intent.putExtra(EditPromotoActivity.BEAN_ID, bean.getId());
                 intent.putExtra("position", position);
                 mContext.startActivity(intent);
             }

@@ -117,6 +117,7 @@ public class PromotoBean extends DataSupport implements Parcelable {
         this.finishedPromotoNum = finishedPromotoNum;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -124,6 +125,7 @@ public class PromotoBean extends DataSupport implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
         dest.writeString(this.tagName);
         dest.writeString(this.content);
         dest.writeByte(this.urgent ? (byte) 1 : (byte) 0);
@@ -139,6 +141,7 @@ public class PromotoBean extends DataSupport implements Parcelable {
     }
 
     protected PromotoBean(Parcel in) {
+        this.id = in.readLong();
         this.tagName = in.readString();
         this.content = in.readString();
         this.urgent = in.readByte() != 0;
@@ -150,16 +153,15 @@ public class PromotoBean extends DataSupport implements Parcelable {
         this.position = in.readInt();
     }
 
-    public static final Parcelable.Creator<PromotoBean> CREATOR =
-            new Parcelable.Creator<PromotoBean>() {
-                @Override
-                public PromotoBean createFromParcel(Parcel source) {
-                    return new PromotoBean(source);
-                }
+    public static final Creator<PromotoBean> CREATOR = new Creator<PromotoBean>() {
+        @Override
+        public PromotoBean createFromParcel(Parcel source) {
+            return new PromotoBean(source);
+        }
 
-                @Override
-                public PromotoBean[] newArray(int size) {
-                    return new PromotoBean[size];
-                }
-            };
+        @Override
+        public PromotoBean[] newArray(int size) {
+            return new PromotoBean[size];
+        }
+    };
 }
