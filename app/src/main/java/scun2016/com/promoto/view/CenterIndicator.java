@@ -1,6 +1,7 @@
 package scun2016.com.promoto.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import scun2016.com.promoto.R;
 
 /**
  * Created by EricLi.
@@ -27,6 +30,8 @@ public class CenterIndicator extends View {
     private int mRadius;
 
     private int mStatus;//未开始，正在倒计时，结束
+
+    private float mRoundDegree;//弧度
 
     private int mBackgroundColor;
     private int mColor;
@@ -58,32 +63,40 @@ public class CenterIndicator extends View {
     }
 
     private void init(Context context, AttributeSet attributeSet, int def){
+
+        TypedArray a = context.obtainStyledAttributes(attributeSet, R.styleable.CenterIndicator);
+        mBackgroundColor = a.getColor(R.styleable.CenterIndicator_color_background, Color.RED);
+        mColor = a.getColor(R.styleable.CenterIndicator_color_center, Color.WHITE);
+        mRoundDegree = a.getDimension(R.styleable.CenterIndicator_round_degree, 10.0f);
+
         mBackgroundPaint = new Paint();
         mBackgroundPaint.setAntiAlias(true);
         mBackgroundPaint.setDither(true);
-        mBackgroundPaint.setColor(Color.RED);
+        mBackgroundPaint.setColor(mBackgroundColor);
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(mColor);
 
         mTrianglePaint = new Paint();
         mTrianglePaint.setAntiAlias(true);
         mTrianglePaint.setDither(true);
         mTrianglePaint.setStyle(Paint.Style.FILL);
-        mTrianglePaint.setColor(Color.BLUE);
+        mTrianglePaint.setColor(mColor);
 
         mCirclePaint = new Paint();
         mCirclePaint.setStyle(Paint.Style.STROKE);
         mCirclePaint.setStrokeWidth(5);
         mCirclePaint.setAntiAlias(true);
         mCirclePaint.setDither(true);
-        mCirclePaint.setColor(Color.WHITE);
+        mCirclePaint.setColor(mColor);
 
         mTickPath = new Path();
         mTrianglePath = new Path();
+
+        a.recycle();
 
     }
 
@@ -180,7 +193,7 @@ public class CenterIndicator extends View {
     //绘制圆角背景
     private void drawBackground(Canvas canvas){
         RectF backgroundRect = new RectF(0, 0, mWidth, mHeight);
-        canvas.drawRoundRect(backgroundRect, 10.0f, 10.0f, mBackgroundPaint);
+        canvas.drawRoundRect(backgroundRect, mRoundDegree, mRoundDegree, mBackgroundPaint);
     }
 
     //绘制三角形

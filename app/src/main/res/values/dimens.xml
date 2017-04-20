@@ -10,4 +10,11 @@
     <dimen name="toolbar_height">50dp</dimen>
     <dimen name="mr">16dp</dimen>
     <dimen name="img">20dp</dimen>
+
+
+
+    <dimen name="promoto_clock_size">150dp</dimen>
+    <dimen name="promoto_clock_width">8dp</dimen>
+    <dimen name="top_task_height">40dp</dimen>
+    <dimen name="top_task_corners">20dp</dimen>
 </resources>

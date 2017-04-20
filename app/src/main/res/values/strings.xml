@@ -36,4 +36,8 @@
     <string name="shake">摇一摇，截屏反馈</string>
     <string name="update">更新</string>
     <string name="about">关于</string>
+
+
+    <string name="top_task">置顶的任务会显示在这里</string>
+    <string name="promoto">番茄土豆</string>
 </resources>

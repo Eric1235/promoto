@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <declare-styleable name="CenterIndicator">
+        <attr name="color_background" format="color"/>
+        <attr name="color_center" format="color"/>
+        <attr name="round_degree" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="PromotoClockView">
+        <attr name="color_progress" format="color"/>
+        <attr name="color_remain" format="color"/>
+        <attr name="color_triangle" format="color"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="progress_width" format="dimension"/>
+    </declare-styleable>
 </resources>

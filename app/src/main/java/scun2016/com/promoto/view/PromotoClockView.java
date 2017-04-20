@@ -1,6 +1,7 @@
 package scun2016.com.promoto.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import scun2016.com.promoto.R;
 
 /**
  * Created by EricLi.
@@ -30,10 +33,16 @@ public class PromotoClockView extends View {
 
     private String content;
 
+    private float mTextSize;
+
+    private int mProgressColor;
+    private int mRemainColor;
+    private int mTriangleColor;
+
     private int mWidth;
     private int mHeight;
     private int mRadius;
-    private int mStrokeWidth;
+    private float mStrokeWidth;
     private int mCenter;
 
     private Paint mPaint;
@@ -64,41 +73,50 @@ public class PromotoClockView extends View {
     public PromotoClockView(Context context,
             @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs, defStyleAttr);
     }
 
-    private void init(){
+    private void init(Context context,
+            @Nullable AttributeSet attrs, int defStyleAttr){
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PromotoClockView);
+        mTextSize = a.getDimension(R.styleable.PromotoClockView_text_size, 50f);
+        mStrokeWidth = a.getDimension(R.styleable.PromotoClockView_progress_width, 20f);
+        mProgressColor = a.getColor(R.styleable.PromotoClockView_color_progress, Color.WHITE);
+        mRemainColor = a.getColor(R.styleable.PromotoClockView_color_remain, Color.BLACK);
+        mTriangleColor = a.getColor(R.styleable.PromotoClockView_color_triangle, Color.WHITE);
         mState = 1;
-        mStrokeWidth = 20;
+
         mProgressAngle = 100;
         content = "25:00";
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(mProgressColor);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mStrokeWidth);
 
         mBackgroundPaint = new Paint();
         mBackgroundPaint.setAntiAlias(true);
         mBackgroundPaint.setDither(true);
-        mBackgroundPaint.setColor(Color.BLACK);
+        mBackgroundPaint.setColor(mRemainColor);
         mBackgroundPaint.setStyle(Paint.Style.STROKE);
         mBackgroundPaint.setStrokeWidth(mStrokeWidth);
 
         mTrianglePaint = new Paint();
         mTrianglePaint.setAntiAlias(true);
         mTrianglePaint.setDither(true);
-        mTrianglePaint.setColor(Color.WHITE);
+        mTrianglePaint.setColor(mTriangleColor);
         mTrianglePaint.setStyle(Paint.Style.FILL);
 
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
         mTextPaint.setDither(true);
-        mTextPaint.setColor(Color.WHITE);
-        mTextPaint.setTextSize(80);
+        mTextPaint.setColor(mTriangleColor);
+        mTextPaint.setTextSize(mTextSize);
 
         mTrianglePath = new Path();
+
+        a.recycle();
     }
 
     @Override
@@ -118,7 +136,7 @@ public class PromotoClockView extends View {
         }
         switch (hMode){
             case MeasureSpec.AT_MOST:
-                hSize = 20;
+                hSize = 200;
                 break;
 
             case MeasureSpec.EXACTLY:
@@ -135,7 +153,7 @@ public class PromotoClockView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
-        mRadius = (mHeight - mStrokeWidth) / 2;
+        mRadius = (mHeight - (int)mStrokeWidth) / 2;
         mCenter = mWidth / 2;
 
     }

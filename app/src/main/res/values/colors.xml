@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="green">#549625</color>
     <color name="list_background">#e22727</color>
+    <color name="red">#e13f3f</color>
     <color name="gray">#e1d9d9</color>
     <color name="light_gray">#f7f4f4</color>
     <color name="sky_blue">#55c3e7</color>
@@ -13,5 +14,8 @@
     <color name="text_color_gray_light">#ccd1d2</color>
     <color name="transparent">#01000000</color>
     <color name="black_transparent">#64969c9e</color>
+    <color name="gray_transparent">#645f6469</color>
+    <color name="dark_gray">#37393d</color>
     <color name="black">#000000</color>
+    <color name="yellow">#fbc1b761</color>
 </resources>

@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/timing_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/list_background"
+        android:layout_height="@dimen/toolbar_height"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/list_background">
+        android:layout_height="wrap_content"
+        android:background="@color/red">
         <TextView
             android:id="@+id/tv_task"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/top_task_height"
             android:layout_centerHorizontal="true"
-            android:text="123"/>
+            android:layout_marginTop="30dp"
+            android:paddingLeft="@dimen/mr"
+            android:paddingRight="@dimen/mr"
+            android:gravity="center"
+            android:background="@drawable/round_text_shape"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_size_large"
+            android:text="@string/top_task"/>
         <scun2016.com.promoto.view.PromotoClockView
             android:id="@+id/view_clock"
+            android:layout_marginTop="30dp"
             android:layout_below="@+id/tv_task"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_width="@dimen/promoto_clock_size"
+            android:layout_height="@dimen/promoto_clock_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            app:color_progress="@color/white"
+            app:text_size="40sp"
+            app:color_remain="@color/gray_transparent"
+            app:color_triangle="@color/white"
+            app:progress_width="@dimen/promoto_clock_width"/>
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
